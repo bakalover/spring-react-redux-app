@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-public class User { //Модель описывающая пользователя в базе данных
+public class User { //Модель, описывающая пользователя в базе данных
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -12,6 +12,13 @@ public class User { //Модель описывающая пользовател
     private String login;
     @Column(name = "password",nullable = false)
     private String password;
+
+    public User(){}
+    public User(String login, String password){
+        this.login = login;
+        this.password = password;
+    }
+
 
     //-------------------SETTERS----------------------
 

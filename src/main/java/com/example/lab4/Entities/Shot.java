@@ -3,10 +3,10 @@ package com.example.lab4.Entities;
 import jakarta.persistence.*;
 
 @Entity
-public class Shot { //Модель представляющая одно конкретное попадание
+public class Shot { //Модель, представляющая одно конкретное попадание
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
     @Column(name = "owner",nullable = false)
     private String owner;
     @Column(name = "x",nullable = false)
@@ -18,10 +18,20 @@ public class Shot { //Модель представляющая одно кон�
     @Column(name = "status",nullable = false)
     private Boolean status;
 
+    public Shot(){}
+    public Shot(String owner, Integer x, Double y,Integer r, Boolean status){
+        this.owner = owner;
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.status = status;
+    }
+
+
     //-------------------SETTERS----------------------
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public void setOwner(String owner) {
@@ -48,7 +58,7 @@ public class Shot { //Модель представляющая одно кон�
 
 
     public Integer getId() {
-        return Id;
+        return this.id;
     }
 
     public String getOwner() {
