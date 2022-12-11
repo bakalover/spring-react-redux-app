@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "shots")
 public class Shot { //Модель, представляющая одно конкретное попадание
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "owner",nullable = false)
     private String owner;
@@ -19,6 +19,7 @@ public class Shot { //Модель, представляющая одно кон
     @Column(name = "status",nullable = false)
     private Boolean status;
 
+    //-------------------CONSTRUCTORS----------------------
     public Shot(){}
     public Shot(String owner, Integer x, Double y,Integer r, Boolean status){
         this.owner = owner;
