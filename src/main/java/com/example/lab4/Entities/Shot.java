@@ -3,9 +3,10 @@ package com.example.lab4.Entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "shots")
 public class Shot { //Модель, представляющая одно конкретное попадание
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "owner",nullable = false)
     private String owner;

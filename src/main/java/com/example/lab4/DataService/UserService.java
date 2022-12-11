@@ -2,6 +2,7 @@ package com.example.lab4.DataService;
 
 
 import com.example.lab4.Entities.User;
+import com.example.lab4.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,7 @@
 package com.example.lab4.DataService;
 
 import com.example.lab4.Entities.Shot;
+import com.example.lab4.repository.ShotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

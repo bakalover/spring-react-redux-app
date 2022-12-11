@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 
 
 @Entity
+@Table(name = "users")
 public class User { //Модель, описывающая пользователя в базе данных
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "login", unique = true,nullable = false)
     private String login;
@@ -35,7 +36,6 @@ public class User { //Модель, описывающая пользовате�
     }
 
     //-------------------GETTERS----------------------
-
 
     public void setId(Integer id) {
         this.id = id;
