@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import  org.springframework.security.core.userdetails.User.UserBuilder;
-
 import java.util.Collections;
 
 @Service
@@ -22,15 +21,11 @@ import java.util.Collections;
 public class UserService implements UserDetailsService { //Класс отвечающий за действия, производимые с таблицей пользователей в бд
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder; //Кодирование паролей
 
     public boolean add(User user){ //Добавление пользователя в бд
         if(userRepository.findByUsername(user.getUsername())!=null){
             return false;
         }
-        user.setRoles(Collections.singleton(new Role(1L,"ROLE_USER"))); //Добавляем пользователю роль ROLE_USER
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));      //Шифруем пароль
         userRepository.save(user);
         return true;
     }
@@ -38,7 +33,6 @@ public class UserService implements UserDetailsService { //Класс отвеч
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }

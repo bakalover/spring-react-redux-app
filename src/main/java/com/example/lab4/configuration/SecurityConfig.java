@@ -4,6 +4,8 @@ import com.example.lab4.DataService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authorization.AuthenticatedAuthorizationManager;
 import org.springframework.security.config.annotation.SecurityBuilder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -30,16 +32,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // Класс
                 .authorizeRequests()
                 .antMatchers("/registration").not().fullyAuthenticated()
                 .antMatchers("/").permitAll()
-                .antMatchers("").hasRole("USER")    //Добавить url главной страницы
-                .antMatchers("").hasRole("USER")    //Добавить url страницы с таблицей
+                .antMatchers("/").hasRole("USER")    //Добавить url главной страницы
+                .antMatchers("/").hasRole("USER")    //Добавить url страницы с таблицей
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/registration") //Возможно сделать отдельную страницу для логина по url-у: /login
                 .defaultSuccessUrl("/")
                 .permitAll()
                 .and().logout().permitAll().logoutSuccessUrl("/");
     }
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+    @Bean
+    public AuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(bCryptPasswordEncoder());
+        provider.setUserDetailsService(this.userService);
+        return provider;
     }
 }

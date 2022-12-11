@@ -1,6 +1,6 @@
 package com.example.lab4.Entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Set;
@@ -14,7 +14,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "name")
     private String name;
     @ManyToMany(mappedBy = "roles")
-    private Set<User> roles;
+    private Set<User> users;
 
     //--------------CONSTRUCTORS---------------
     public Role() {
@@ -39,8 +39,8 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    public void setRoles(Set<User> roles) {
-        this.roles = roles;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     //--------------GETTERS---------------
@@ -53,8 +53,8 @@ public class Role implements GrantedAuthority {
         return name;
     }
 
-    public Set<User> getRoles() {
-        return roles;
+    public Set<User> getUsers() {
+        return users;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.lab4.Entities;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "shots")
