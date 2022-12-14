@@ -5,7 +5,10 @@ import com.example.lab4.Entities.Role;
 import com.example.lab4.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 
-@RestController
+@Controller
 public class RegistrationController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private DaoAuthenticationProvider auth;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -30,6 +35,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("userForm") User userForm, Model model){
+        //auth.authenticate(new UsernamePasswordAuthenticationToken(userForm.getUsername(),userForm.getPassword()));
         userForm.setRoles(Collections.singleton(new Role(1L,"ROLE_USER"))); //Добавляем пользователю роль ROLE_USER
         userForm.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));      //Шифруем пароль
         if (!userService.add(userForm)){

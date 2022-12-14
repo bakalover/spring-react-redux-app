@@ -26,22 +26,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // Класс
     }
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
+        // Исходя из архитектуры, контроль будет передаваться ПЕРВОЙ попавшейся цепи фильтров
         httpSecurity
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/registration").not().fullyAuthenticated()
-                .antMatchers("/").permitAll()
-                .antMatchers("/").hasRole("USER")    //Добавить url главной страницы
-                .antMatchers("/").hasRole("USER")    //Добавить url страницы с таблицей
+                .antMatchers("/registration").not().fullyAuthenticated() //Только не зарегестрированным
+                .antMatchers("/").permitAll()                            //Всем
+                .antMatchers("/main").hasRole("USER")                    //Только пользователям
+                .antMatchers("/table").hasRole("USER")                   //Только пользователям
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/registration") //Возможно сделать отдельную страницу для логина по url-у: /login
-                .defaultSuccessUrl("/")
-                .permitAll()
+                .and().formLogin().loginPage("/login")            //Иной доступ блокируется -> нужна аутентификация
+                .defaultSuccessUrl("/main").permitAll()           //В случае успешного входа перенаправляем на страницу с графиком
                 .and().logout().permitAll().logoutSuccessUrl("/");
     }
     @Bean
-    public AuthenticationProvider daoAuthenticationProvider() {
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder());
         provider.setUserDetailsService(this.userService);
