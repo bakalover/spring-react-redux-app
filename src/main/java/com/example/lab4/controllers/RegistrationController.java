@@ -22,27 +22,26 @@ import java.util.Collections;
 public class RegistrationController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private DaoAuthenticationProvider auth;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+   /* @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;*/
 
-    @GetMapping("/registration")
+    @GetMapping("/start")
     public String registration(Model model) {
         model.addAttribute("userForm", new User()); //Зарание помещаем пустой объект, чтобы потом после заполнения формы получить его через post запрос
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("userForm") User userForm, Model model){
-        //auth.authenticate(new UsernamePasswordAuthenticationToken(userForm.getUsername(),userForm.getPassword()));
-        userForm.setRoles(Collections.singleton(new Role(1L,"ROLE_USER"))); //Добавляем пользователю роль ROLE_USER
+    public String addUser(@ModelAttribute User userForm, Model model){
+        /*userForm.setRoles(Collections.singleton(new Role(1L,"ROLE_USER"))); //Добавляем пользователю роль ROLE_USER
         userForm.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));      //Шифруем пароль
         if (!userService.add(userForm)){
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
             return "registration";
         }
-        return "redirect:/";
+        return "redirect:/";*/
+        System.out.println(userForm.getUsername());
+        return "index.html";
     }
 
 }

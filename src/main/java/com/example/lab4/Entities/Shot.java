@@ -22,7 +22,7 @@ public class Shot { //Модель, представляющая одно кон
 
     //-------------------CONSTRUCTORS----------------------
     public Shot(){}
-    public Shot(String owner, Integer x, Double y,Integer r, Boolean status){
+    public Shot(String owner, Integer x, Double y,Integer r, Boolean status){ //Либо добавить валидацию либо получать status с фронта
         this.owner = owner;
         this.x = x;
         this.y = y;
