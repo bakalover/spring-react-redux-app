@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // Класс
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/registration").not().fullyAuthenticated() //Только не зарегестрированным
+                .antMatchers("/registration").not().authenticated() //Только не зарегестрированным
                 .antMatchers("/index").hasRole("USER")
                 .antMatchers("/table").hasRole("USER")                   //Только пользователям
                 .anyRequest().authenticated()
