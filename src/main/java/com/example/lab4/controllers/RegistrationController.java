@@ -39,7 +39,7 @@ public class RegistrationController {
             return "registration";
         }
         System.out.println(userForm.getUsername());
-        return "main";
+        return "login";
     }
 
 }

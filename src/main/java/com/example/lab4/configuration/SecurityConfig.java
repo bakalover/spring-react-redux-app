@@ -32,7 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // Класс
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/registration").not().fullyAuthenticated() //Только не зарегестрированным
-                .antMatchers("/").permitAll()                            //Всем
                 .antMatchers("/index").hasRole("USER")
                 .antMatchers("/table").hasRole("USER")                   //Только пользователям
                 .anyRequest().authenticated()
