@@ -1,5 +1,5 @@
 package com.example.lab4.configuration;
-/*
+
 import com.example.lab4.DataService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,12 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // Класс
                 .authorizeRequests()
                 .antMatchers("/registration").not().fullyAuthenticated() //Только не зарегестрированным
                 .antMatchers("/").permitAll()                            //Всем
-                .antMatchers("/main").hasRole("USER")                    //Только пользователям
+                .antMatchers("/index").hasRole("USER")
                 .antMatchers("/table").hasRole("USER")                   //Только пользователям
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login")            //Иной доступ блокируется -> нужна аутентификация
                 .defaultSuccessUrl("/main").permitAll()           //В случае успешного входа перенаправляем на страницу с графиком
-                .and().logout().permitAll().logoutSuccessUrl("/");
+                .and().logout().permitAll().logoutSuccessUrl("/registration");
     }
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -47,4 +47,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // Класс
         provider.setUserDetailsService(this.userService);
         return provider;
     }
-}*/
+}

@@ -14,9 +14,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/") //Начальная страница
+    @GetMapping("/main") //Начальная страница
     public String homePage(Model model){
-        return "index";
+        return "main";
     }
 
     //Методы обработки по указанным url...
