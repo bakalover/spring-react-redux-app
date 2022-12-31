@@ -23,7 +23,7 @@ public class TokenFilter extends OncePerRequestFilter {
     private UserService userService;
 
     private String parse(HttpServletRequest request) {
-        String headerAuth = request.getHeader("Authorization"); // На фронте формируем заголовок Authorization:token:fffffff
+        String headerAuth = request.getHeader("Authorization"); // На фронте формируем заголовок вида Authorization:token:xxxxxxxxxxxxxxxxx
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("token:")) {
             return headerAuth.substring(6);
         }
