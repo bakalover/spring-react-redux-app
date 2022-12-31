@@ -1,2 +1,22 @@
-package com.example.lab4.configuration;public class Loader {
+package com.example.lab4.configuration;
+
+import com.example.lab4.Entities.Role;
+import com.example.lab4.repository.RoleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Loader implements CommandLineRunner {
+    @Autowired
+    private final RoleRepository repository;
+
+    public Loader(RoleRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+        this.repository.save(new Role(1L,"ROLE_USER"));
+    }
 }

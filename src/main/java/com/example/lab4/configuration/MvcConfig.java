@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
+/*@Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
     @Override
@@ -14,4 +14,4 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/main").setViewName("main"); // TESTING
         registry.addViewController("/").setViewName("main"); // TESTING
     }
-}
+}*/
