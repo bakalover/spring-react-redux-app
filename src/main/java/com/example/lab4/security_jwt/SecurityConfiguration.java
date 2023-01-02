@@ -19,34 +19,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter { // Класс настроек защиты -> пароли и авторизация
-    /*@Autowired
-    UserService userService;
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() { //Хэшировчик паролей пользователей
-        return new BCryptPasswordEncoder();
-    }
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception{
-        // Исходя из архитектуры, контроль будет передаваться ПЕРВОЙ попавшейся цепи фильтров
-        httpSecurity
-                .csrf()
-                .disable()
-                .authorizeRequests()
-                .antMatchers("/registration").not().authenticated() // Проблема  - пропускает зарегестрированных
-                .antMatchers("/index").hasRole("USER")
-                .antMatchers("/table").hasRole("USER")                   //Только пользователям
-                .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login")            //Иной доступ блокируется -> нужна аутентификация
-                .defaultSuccessUrl("/main").permitAll()           //В случае успешного входа перенаправляем на страницу с графиком
-                .and().logout().permitAll().logoutSuccessUrl("/registration");
-    }
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder());
-        provider.setUserDetailsService(this.userService);
-        return provider;
-    }*/
     @Autowired
     UserService userService;
 

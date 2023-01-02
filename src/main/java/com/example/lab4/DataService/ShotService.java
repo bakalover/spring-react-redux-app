@@ -15,7 +15,7 @@ public class ShotService {
     @Autowired
     private ShotRepository shotRepository;
 
-    public Shot addShot(Shot shot){ //Добавление попадания в бд
+    public Shot addShot(Shot shot){
         return shotRepository.save(shot);
     }
 
@@ -27,6 +27,4 @@ public class ShotService {
         return shotRepository.findAll();
     }
 
-    //В зависимости от надобности - добавить другие методы
-    //...
 }

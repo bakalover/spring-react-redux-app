@@ -2,28 +2,19 @@ package com.example.lab4.controllers;
 
 import com.example.lab4.DataService.UserService;
 import com.example.lab4.Entities.JwtByUsername;
-import com.example.lab4.Entities.Role;
 import com.example.lab4.Entities.User;
-import com.example.lab4.security_jwt.Util;
+import com.example.lab4.security_jwt.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
 
 @Controller
 @RequestMapping("/auth")
 public class RegistrationController {
     @Autowired
-    Util jwtUtil;
+    JwtUtil jwtUtil;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -40,7 +31,7 @@ public class RegistrationController {
             userService.add(new User(userReq.getUsername(), passwordEncoder.encode(userReq.getPassword())));
             return ResponseEntity.ok().body(userReq.getUsername());
         }
-        catch (Exception exception) {
+        catch (Exception e) {
             return ResponseEntity.badRequest().body("Имя пользователя '" + userReq.getUsername() + "' занято.");
         }
     }
@@ -59,7 +50,7 @@ public class RegistrationController {
                 return ResponseEntity.ok(new JwtByUsername(userReq.getUsername(), jwt));
             }
         }
-        catch (IllegalArgumentException | IllegalAccessException exception) {
+        catch (IllegalArgumentException | IllegalAccessException e) {
             return ResponseEntity.badRequest().body("Неверное имя пользователя или пароль.");
         }
     }
