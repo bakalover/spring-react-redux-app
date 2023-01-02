@@ -29,7 +29,7 @@ public class RegistrationController {
                 throw new Exception();
             }
             userService.add(new User(userReq.getUsername(), passwordEncoder.encode(userReq.getPassword())));
-            return ResponseEntity.ok().body(userReq.getUsername());
+            return ResponseEntity.ok(userReq.getUsername());
         }
         catch (Exception e) {
             return ResponseEntity.badRequest().body("Имя пользователя '" + userReq.getUsername() + "' занято.");

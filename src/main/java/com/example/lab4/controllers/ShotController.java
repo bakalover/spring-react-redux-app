@@ -19,7 +19,7 @@ public class ShotController {
     private ShotService shotService;
 
     @GetMapping("/user") // .../api/shots/user -> Запрос всех точек определённого пользователя - Через Principal можно будет получать только свои иначе можно добавть новый get сетод на новый url
-    ResponseEntity<?> getUserShots(String username){ //Testing ((@Valid @RequestBody Principal principal))
+    ResponseEntity<?> getUserShots(@RequestBody String username){ //Testing ((@Valid @RequestBody Principal principal))
         return ResponseEntity.ok(shotService.getByUser(username));
     }
 
@@ -32,7 +32,7 @@ public class ShotController {
         return ResponseEntity.ok(shotService.getAll());
     }
 
-    @PostMapping// .../api/shots -> Добавление точки пользователя, возвращает добавленный объект
+    @PostMapping("/add")// .../api/shots -> Добавление точки пользователя, возвращает добавленный объект
     ResponseEntity<?> addUserShots(@Valid @RequestBody Shot shot) { //Testing ((@Valid @RequestBody Shot shot, Principal principal))
         return ResponseEntity.ok(shotService.addShot(shot));
     }
