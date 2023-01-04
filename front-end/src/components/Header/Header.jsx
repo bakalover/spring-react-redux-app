@@ -11,7 +11,8 @@ const Header = (props) => {
   
     return (
       <header styleName="main-header" className="theme">
-        {props.loggedUser && <Logout action={handleLogout} />}
+        {/* {props.loggedUser && <Logout action={handleLogout} />} */}
+        {<Logout action={handleLogout} />}
         <ul styleName="main-header__content info">
           <li styleName="info__item">Лабораторная работа №4</li>
           <li styleName="info__item">Вариант: 910008</li>

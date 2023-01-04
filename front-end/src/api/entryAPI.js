@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:XXXX/lab4/api/entries/'
+  baseURL: 'http://localhost:3000/lab4/api/entries/'
 });
 
 const entryAPI = {

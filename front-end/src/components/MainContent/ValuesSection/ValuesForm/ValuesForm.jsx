@@ -64,6 +64,22 @@ const ValuesForm = (props) => {
     setInfoMessage(message === '' ? 'Введите координаты точки' : message);
   }, [props]);
 
+  const [checked, setChecked] = useState(false);
+
+  //const ref = useRef(null);
+
+  let message;
+  let mas = [];
+	if ((checked)){
+    message = props.value; 
+    mas.push(props.value);   
+	}
+  else {
+		message = 0;
+	}
+
+  console.log("mas:" + mas);
+
   return (
     <form styleName="values-form" onSubmit={(e) => handleSubmit(e)}>
       <InfoMessage message={infoMessage} />
@@ -74,9 +90,14 @@ const ValuesForm = (props) => {
             R
           </span>
         </label>
+        {/* <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} 
+          onClick={() => props.selectValue(1)} value = {1} groupValues={props.rValues} valueCurrent={props.rCurrent} 
+          selectValue={props.selectR}/>
+		    <div id = 'message'>{message}</div> */}
         <div styleName="values-form__control">
-          <FormButtonGroup groupValues={props.rValues} valueCurrent={props.rCurrent} selectValue={props.selectR} />
+          <FormButtonGroup groupValues={props.rValues} valueCurrent={props.rCurrent} selectValue={props.selectR} checked = "true"/>
         </div>
+        
       </div>
 
       <div styleName="values-form__container">
@@ -97,7 +118,7 @@ const ValuesForm = (props) => {
           </span>
         </label>
         <div styleName="values-form__control">
-          <TextField value={props.yCurrent} changeValue={props.changeY} maxLength="7" placeholder="Число от -3 до 3" />
+          <TextField value={props.yCurrent} changeValue={props.changeY} maxLength="7" placeholder="Число от -5 до 5" />
         </div>
       </div>
 
