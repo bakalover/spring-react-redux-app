@@ -13,7 +13,7 @@ Backend:<br><br>
   <li>
     Urls: 
     <ul>
-      <li> Method: POST "/auth/registration" </li>
+      <li> Method: POST "/auth/register" </li>
       <li> Method: POST "/auth/login"</li>
     </ul>
   </li>
@@ -39,13 +39,13 @@ Backend:<br><br>
     Посылка:
     <ul>
       <li> На /add : {"owner":"------", "x":"------", "y":"------", "r":"------", "status":"------"}</li>
-      <li> На /user : имя пользолвателя в теле запроса без кавычек</li>
+      <li> На /user : имя пользователя в теле запроса без кавычек</li>
       <li> На /my : ничего (магия токенов - через него поймёт чьи точки возвращать)</li>
       <li> На /all: ничего </li>
     </ul>
    </li>
    <li>
-    Поолучение:
+    Получение:
     <ul>
       <li>/add : {"owner":"------", "x":"------", "y":"------", "r":"------", "status":"------"} (возвращает тоже, что и отправляется)</li>
       <li>Остальное: [{...},{...},...] (список json с объектами в том же формате, что и при посылке через /add)</li>
@@ -55,6 +55,6 @@ Backend:<br><br>
 <br>
 Динамическое обновление:
 <ul>
-  <li>Использование STOPM protocol на основе WebSocket protocol</li>
+  <li>Использование STOMP protocol на основе WebSocket protocol</li>
   добавляется...
 </ul>

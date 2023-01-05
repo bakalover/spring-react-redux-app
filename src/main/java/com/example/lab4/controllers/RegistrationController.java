@@ -22,7 +22,7 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/registration")
+    @PostMapping("/register")
     ResponseEntity<?> register(@RequestBody User userReq) {
         try {
             if (userService.loadUserByUsername(userReq.getUsername()) != null) {
