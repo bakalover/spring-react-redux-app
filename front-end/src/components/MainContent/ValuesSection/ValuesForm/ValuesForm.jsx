@@ -5,6 +5,7 @@ import ControlButton from 'components/common/ControlButton/ControlButton';
 import InfoMessage from './InfoMessage/InfoMessage';
 import FormButtonGroup from './FormButtonGroup/FormButtonGroup';
 import TextField from './TextField/TextField';
+import FormButtonGroupX from './FormButtonGroup/FormButtonGroupX';
 
 const CHECK = 'check';
 const CLEAR = 'clear';
@@ -64,21 +65,22 @@ const ValuesForm = (props) => {
     setInfoMessage(message === '' ? 'Введите координаты точки' : message);
   }, [props]);
 
-  const [checked, setChecked] = useState(false);
+ // const [checked, setChecked] = useState(false);
 
   //const ref = useRef(null);
 
-  let message;
-  let mas = [];
-	if ((checked)){
-    message = props.value; 
-    mas.push(props.value);   
-	}
-  else {
-		message = 0;
-	}
+  // let message;
+  // let mas = [];
+	// if ((checked)){
+  //   message = props.value; 
+  //   mas.push(props.value);   
+	// }
+  // else {
+	// 	message = 0;
+	// }
 
-  console.log("mas:" + mas);
+  // console.log("mas:" + mas);
+  //alert(props.xCurrent);
 
   return (
     <form styleName="values-form" onSubmit={(e) => handleSubmit(e)}>
@@ -95,7 +97,7 @@ const ValuesForm = (props) => {
           selectValue={props.selectR}/>
 		    <div id = 'message'>{message}</div> */}
         <div styleName="values-form__control">
-          <FormButtonGroup groupValues={props.rValues} valueCurrent={props.rCurrent} selectValue={props.selectR} checked = "true"/>
+          <FormButtonGroup groupValues={props.rValues} valueCurrent={props.rCurrent} selectValue={props.selectR}/>
         </div>
         
       </div>
@@ -107,7 +109,7 @@ const ValuesForm = (props) => {
           </span>
         </label>
         <div styleName="values-form__control">
-          <FormButtonGroup groupValues={props.xValues} valueCurrent={props.xCurrent} selectValue={props.selectX} />
+          <FormButtonGroupX groupValues={props.xValues} valueCurrent={props.xCurrent} selectValue={props.selectX} />
         </div>
       </div>
 

@@ -16,7 +16,6 @@ const initialState = {
   yMin: -5,
   yMax: 5,
   yCurrent: undefined,
-  mesCurrent: undefined
 };
 
 export default function valuesReducer(state = initialState, action = {}) {
@@ -60,7 +59,8 @@ export default function valuesReducer(state = initialState, action = {}) {
         {
           rCurrent: 1,
           xCurrent: undefined,
-          yCurrent: undefined
+          yCurrent: undefined,
+          mesCurrent: 0
         }
       );
     default:
@@ -79,6 +79,7 @@ export function selectX(value) {
 export function changeY(value) {
   return { type: CHANGE_Y, value };
 }
+
 
 export function clearCurrent() {
   return { type: CLEAR_CURRENT };

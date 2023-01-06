@@ -8,7 +8,7 @@ const Header = (props) => {
       e.preventDefault();
       props.logout();
     }
-  
+    
     return (
       <header styleName="main-header" className="theme">
         {/* {props.loggedUser && <Logout action={handleLogout} />} */}

@@ -3,14 +3,20 @@ import React, { useRef, useEffect } from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './Graph.module.css';
 //import GraphSvg from './GraphsPlusR/GraphSvg';
-import FormButton from 'components/MainContent/ValuesSection/ValuesForm/FormButtonGroup/FormButton/FormButton';
+//import FormButton from 'components/MainContent/ValuesSection/ValuesForm/FormButtonGroup/FormButton/FormButton';
 import GraphSvg1 from './GraphSvg1';
 import Canvas from './Canvas/Canvas';
 
 //разобраться с тем, как выбирается X при клике!!!
 const Graph = (props) => {
   let masR = [];
-  const canone = 68;
+
+
+  let arr = [];
+    for (let i = 0; i < 9; i++){
+      arr[i] = 10;
+    }
+  //const canone = 68;
 
   const pointsCanvasRef = useRef(null);
   const currentCanvasRef = useRef(null);
@@ -31,7 +37,54 @@ const Graph = (props) => {
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
+  const clearCurrent = (canvas, canvasCtx) => {
+
+    const x  = 150 + props.xCurrent/4 * 100;
+    const y = 150 - props.yCurrent/4 * 100;
+
+    if (props.xCurrent==="-4n"){
+      canvasCtx.clearRect(150 + -4/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[0] = -4;
+    }
+    if (props.xCurrent==="-3n"){
+      canvasCtx.clearRect(150 + -3/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[1] = -4;
+    }
+    if (props.xCurrent==="-2n"){
+      canvasCtx.clearRect(150 + -2/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[2] = -4;
+    }
+    if (props.xCurrent==="-1n"){
+      canvasCtx.clearRect(150 + -1/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[3] = -4;
+    }
+    if (props.xCurrent==="0n"){
+      canvasCtx.clearRect(150 + 0/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[4] = -4;
+    }
+    if (props.xCurrent==="1n"){
+      canvasCtx.clearRect(150 + 1/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[5] = -4;
+    }
+    if (props.xCurrent==="2n"){
+      canvasCtx.clearRect(150 + 2/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[6] = -4;
+    }
+    if (props.xCurrent==="3n"){
+      canvasCtx.clearRect(150 + 3/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[7] = -4;
+    }
+    if (props.xCurrent==="4n"){
+      canvasCtx.clearRect(150 + 4/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+      arr[8] = -4;
+    }
+
+  }
+
   const drawCurrent = (canvas, canvasCtx) => {
+
+    arr[props.xCurrent] = props.xCurrent;
+    
     //clearCanvas(canvas, canvasCtx);
 
     //alert(props.rCurrent);
@@ -41,6 +94,20 @@ const Graph = (props) => {
 
     //const x2 = ((props.rCurrent * (props.xCurrent - 150))/100) * (4/props.rCurrent);
     // const y = ((props.rCurrent * (150 - props.yCurrent))/100) * (4/props.rCurrent);
+
+    // if (document.getElementById("-4x").checked){
+    //   alert(props.xCurrent);
+    // }
+    // if (document.getElementById("-4x").checked === false){
+    //   alert("nooooo");
+    // }
+
+    // if (props.xCurrent !== undefined){
+    //   alert(document.getElementById(props.xCurrent + "x").getAttribute("value"));
+    // }
+    
+    //alert(props.xCurrent);
+    
 
     const x  = 150 + props.xCurrent/4 * 100;
     const y = 150 - props.yCurrent/4 * 100;
@@ -55,16 +122,81 @@ const Graph = (props) => {
       return;
     }
 
+    //alert(props.xCurrent);
+
     //canvasCtx.setLineDash([2, 2]);
     canvasCtx.fillStyle = 'black';
     canvasCtx.beginPath();
-    canvasCtx.moveTo(x, canvas.width / 2);
-    canvasCtx.lineTo(x, y);
-    canvasCtx.moveTo(canvas.height / 2, y);
-    canvasCtx.lineTo(x, y);
-    //canvasCtx.stroke();
+    // canvasCtx.moveTo(x, canvas.width / 2);
+    // canvasCtx.lineTo(x, y);
+    // canvasCtx.moveTo(canvas.height / 2, y);
+    // canvasCtx.lineTo(x, y);
+    
+    // canvasCtx.stroke();
     canvasCtx.arc(x, y, 2, 0, 2 * Math.PI);
     canvasCtx.fill();
+
+
+    // if (props.xCurrent==="-4n"){
+    //   canvasCtx.clearRect(150 + -4/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    //   props.xCurrent = undefined;
+    // }
+    // if (props.xCurrent==="-3n"){
+    //   canvasCtx.clearRect(150 + -3/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if (props.xCurrent==="-2n"){
+    //   canvasCtx.clearRect(150 + -2/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if (props.xCurrent==="-1n"){
+    //   canvasCtx.clearRect(150 + -1/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if (props.xCurrent==="0n"){
+    //   canvasCtx.clearRect(150 + 0/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if (props.xCurrent==="1n"){
+    //   canvasCtx.clearRect(150 + 1/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if (props.xCurrent==="2n"){
+    //   canvasCtx.clearRect(150 + 2/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if (props.xCurrent==="3n"){
+    //   canvasCtx.clearRect(150 + 3/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if (props.xCurrent==="4n"){
+    //   canvasCtx.clearRect(150 + 4/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+
+
+    // if(props.xCurrent===undefined && document.getElementById("-4x").getAttribute("value").substring(2,3)!=="n"){
+    //   arr[0] = -4;
+    // }
+    // if(props.xCurrent===undefined && document.getElementById("-3x").getAttribute("value").substring(2,3)!=="n"){
+    //   arr[1] = -3;
+    // }
+    // alert(arr);
+
+    // if(props.xCurrent===undefined && document.getElementById("-2x").getAttribute("value").substring(2,3)!=="n"){
+    //   canvasCtx.clearRect(150 + -2/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if(props.xCurrent===undefined && document.getElementById("-1x").getAttribute("value").substring(2,3)!=="n"){
+    //   canvasCtx.clearRect(150 + -1/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if(props.xCurrent===undefined && document.getElementById("0x").getAttribute("value").substring(2,3)!=="n"){
+    //   canvasCtx.clearRect(150 + 0/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if(props.xCurrent===undefined && document.getElementById("1x").getAttribute("value").substring(2,3)!=="n"){
+    //   canvasCtx.clearRect(150 + 1/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if(props.xCurrent===undefined && document.getElementById("2x").getAttribute("value").substring(2,3)!=="n"){
+    //   canvasCtx.clearRect(150 + 2/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if(props.xCurrent===undefined && document.getElementById("3x").getAttribute("value").substring(2,3)!=="n"){
+    //   canvasCtx.clearRect(150 + 3/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+    // if(props.xCurrent===undefined && document.getElementById("4x").getAttribute("value").substring(2,3)!=="n"){
+    //   canvasCtx.clearRect(150 + 4/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
+    // }
+
   }
 
   const handleClick = (canvasRef, event) => {
@@ -73,6 +205,9 @@ const Graph = (props) => {
     //let canvasX = (event.nativeEvent.offsetX - canvas.width / 2) / canone * props.rCurrent;
 
     let canvasX = ((props.rCurrent * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent);
+
+    // alert(props.rCurrent);
+    // alert(event.nativeEvent.offsetX);
 
     let minDiff = Infinity;
 
@@ -104,62 +239,32 @@ const Graph = (props) => {
     props.selectX(canvasX);
     props.changeY(canvasY.toString().substring(0, 7));
 
+    
     //const x  = 150 + props.xCurrent/4 * 100;
     //const y = 150 - props.yCurrent/4 * 100;
 
-    //props.selectX(x);
-    //props.changeY(y);
+    
   }
 
   useEffect(() => {
     const pointsCanvas = pointsCanvasRef.current;
     const pointsCanvasCtx = pointsCanvas.getContext('2d');
+    //drawCurrent(pointsCanvas, pointsCanvasCtx);
     clearCanvas(pointsCanvas, pointsCanvasCtx);
 
     const currentCanvas = currentCanvasRef.current;
     const currentCanvasCtx = currentCanvas.getContext('2d');
-    clearCanvas(currentCanvas, currentCanvasCtx);
+    //clearCanvas(currentCanvas, currentCanvasCtx);
 
     loadPrevPoints(pointsCanvas, pointsCanvasCtx);
     drawCurrent(currentCanvas, currentCanvasCtx);
+    clearCurrent(currentCanvas, currentCanvasCtx);
+    //alert(arr);
+    
   });
 
   let image = <GraphSvg1 rValue={props.rCurrent} />;
-  //let image1 = <GraphTest rValue={props.rCurrent} />;
-  //let image2 = <GraphMatw rValue={props.rCurrent} />;
-
-  // switch(props.rCurrent){
-  //       case 0:
-  //           image = <GraphSvg0 rValue={props.rCurrent} />;
-  //           break
-  //       case 1:
-  //           image = <GraphSvg1 rValue={props.rCurrent} />;
-  //           break
-  //       case 2:
-  //           image = <GraphSvg2 rValue={props.rCurrent} />;
-  //           break
-  //       case 3:
-  //           image = <GraphSvg3 rValue={props.rCurrent} />;
-  //           break
-  //       case 4:
-  //           image = <GraphSvg4 rValue={props.rCurrent} />;
-  //           break
-  //       case -1:
-  //           image = <GraphSvgMinus1 rValue={props.rCurrent} />;
-  //           break
-  //       case -2:
-  //           image = <GraphSvgMinus2 rValue={props.rCurrent} />;
-  //           break
-  //       case -3:
-  //           image = <GraphSvgMinus3 rValue={props.rCurrent} />;
-  //           break
-  //       case -4:
-  //           image = <GraphSvgMinus4 rValue={props.rCurrent} />;
-  //           break
-  // }
-
   
- 
  
   masR.push(props.xCurrent, props.yCurrent, props.rCurrent);
 
@@ -183,105 +288,29 @@ const Graph = (props) => {
   // console.log(props.rCurrent);
   // console.log(props.yCurrent);
   // console.log("");
+
   console.log(masR);
+  if(props.xCurrent!==undefined){
+    if(props.xCurrent.length>2){
+      props.xCurrent = undefined;
+    }
+
+  }
+  
+  // alert(props.xCurrent);
+
+  //alert(arr);
 
   return (
         <div styleName="graph-container" id='wrapper'>
           {image}         
-          <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-          <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
+          <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)"/>
+          <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)"  handleClick = {handleClick}/>
         </div>
       
 
       );
 
-  // if ((props.rCurrent)===-1){
-  //   return (
-  //     <div styleName="graph-container">
-  //       <GraphSvgMinus1 rValue={props.rCurrent} />
-  //       <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-  //       <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
-  //     </div>
-  //   );
-  // } 
-
-  // if ((props.rCurrent)===-2){
-  //   return (
-  //     <div styleName="graph-container">
-        
-  //       <GraphSvgMinus2 rValue={props.rCurrent} />
-  //       <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-  //       <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
-  //     </div>
-  //   );
-  // } 
-
-  // if ((props.rCurrent)===-3){
-  //   return (
-  //     <div styleName="graph-container">
-        
-  //       <GraphSvgMinus3 rValue={props.rCurrent} />
-  //       <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-  //       <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
-  //     </div>
-  //   );
-  // } 
-
-  // if ((props.rCurrent)===-4){
-  //   return (
-  //     <div styleName="graph-container">
-        
-  //       <GraphSvgMinus4 rValue={props.rCurrent} />
-  //       <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-  //       <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
-  //     </div>
-  //   );
-  // } 
- 
-  // if ((props.rCurrent)===1){
-  //   return (
-  //     <div styleName="graph-container">
-        
-  //       <GraphSvg1 rValue={props.rCurrent} />
-  //       <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-  //       <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
-  //     </div>
-  //   );
-  // }
-
-  // if ((props.rCurrent)===2){
-  //   return (
-  //     <div styleName="graph-container">
-        
-  //       <GraphSvg2 rValue={props.rCurrent} />
-  //       <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-  //       <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
-  //     </div>
-  //   );
-  // }
-
-
-  // if ((props.rCurrent)===3){
-  //   return (
-  //     <div styleName="graph-container">
-        
-  //       <GraphSvg3 rValue={props.rCurrent} />
-  //       <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-  //       <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
-  //     </div>
-  //   );
-  // }
-
-  // if ((props.rCurrent)===4){
-  //   return (
-  //     <div styleName="graph-container">
-        
-  //       <GraphSvg4 rValue={props.rCurrent} />
-  //       <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)" />
-  //       <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)" handleClick={handleClick} />
-  //     </div>
-  //   );
-  // }
   
 }
 
