@@ -2,19 +2,20 @@ import entryAPI from 'api/entryAPI';
 import { logout } from './auth';
 import { setEntries, addEntry } from './table';
 
-const SELECT_R = 'web-lab4/values/SELECT_R';
-const SELECT_X = 'web-lab4/values/SELECT_X';
-const CHANGE_Y = 'web-lab4/values/CHANGE_Y';
-const CLEAR_CURRENT = 'web-lab4/values/CLEAR_CURRENT';
+const SELECT_R = 'lab4/values/SELECT_R';
+const SELECT_X = 'lab4/values/SELECT_X';
+const CHANGE_Y = 'lab4/values/CHANGE_Y';
+const CHANGE_MES = 'lab4/values/CHANGE_MES';
+const CLEAR_CURRENT = 'lab4/values/CLEAR_CURRENT';
 
 const initialState = {
   rValues: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
   rCurrent: 1,
   xValues: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
   xCurrent: undefined,
-  yMin: -3,
-  yMax: 3,
-  yCurrent: undefined
+  yMin: -5,
+  yMax: 5,
+  yCurrent: undefined,
 };
 
 export default function valuesReducer(state = initialState, action = {}) {
@@ -43,6 +44,14 @@ export default function valuesReducer(state = initialState, action = {}) {
           yCurrent: action.value
         }
       );
+      case CHANGE_MES:
+      return Object.assign(
+        {},
+        state,
+        {
+          mesCurrent: action.value
+        }
+      );
     case CLEAR_CURRENT:
       return Object.assign(
         {},
@@ -50,7 +59,8 @@ export default function valuesReducer(state = initialState, action = {}) {
         {
           rCurrent: 1,
           xCurrent: undefined,
-          yCurrent: undefined
+          yCurrent: undefined,
+          mesCurrent: 0
         }
       );
     default:
@@ -69,6 +79,7 @@ export function selectX(value) {
 export function changeY(value) {
   return { type: CHANGE_Y, value };
 }
+
 
 export function clearCurrent() {
   return { type: CLEAR_CURRENT };

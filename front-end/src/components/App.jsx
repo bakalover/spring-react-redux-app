@@ -15,16 +15,16 @@ const App = (props) => {
     }
   }, [isLoaded, props]);
 
-//   if (props.isLoading) {
-//     return (
-//       <div>
-//         <HeaderContainer />
-//         <TitleHelmet title="Лабораторная работа #4 - Загрузка..." />
-//         <Preloader />
-//       </div>
+  // if (props.isLoading) {
+  //   return (
+  //     <div>
+  //       <HeaderContainer />
+  //       <TitleHelmet title="Лабораторная работа #4 - Загрузка..." />
+  //       <Preloader />
+  //     </div>
 
-//     );
-//   } else if (props.loggedUser) {
+  //   );
+  // } else if (props.loggedUser) {
     return (
       <div>
         <HeaderContainer />
@@ -32,15 +32,15 @@ const App = (props) => {
         <MainContent />
       </div>
     );
-//   } else {
-//     return (
-//       <div>
-//         <HeaderContainer />
-//         <TitleHelmet title="Лабораторная работа #4 - Страница авторизации" />
-//         <IndexContent />
-//       </div>
-//     );
-//   }
-}
+   } //else {
+  //   return (
+  //     <div>
+  //       <HeaderContainer />
+  //       <TitleHelmet title="Лабораторная работа #4 - Страница авторизации" />
+  //       <IndexContent />
+  //     </div>
+  //   );
+  // }
+//}
 
 export default App;

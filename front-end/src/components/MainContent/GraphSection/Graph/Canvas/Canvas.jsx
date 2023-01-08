@@ -4,8 +4,8 @@ import styles from './Canvas.module.css';
 
 const Canvas = (props) => {
   return (
-
-    <canvas ref={props.canvasRef} styleName="canvas" width="220" height="220"
+    //было 220 на 220 стало 300 на 300(тест)
+    <canvas ref={props.canvasRef} styleName="canvas" width="300" height="300"
       onClick={props.handleClick !== undefined ? (e) => props.handleClick(props.canvasRef, e) : null}>
       {props.alt}
     </canvas>

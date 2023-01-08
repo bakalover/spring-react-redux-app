@@ -6,6 +6,7 @@ import GraphSection from './GraphSection/GraphSection';
 import ValuesSection from './ValuesSection/ValuesSection';
 import TableSectionContainer from './TableSection/TableSectionContainer';
 
+
 const MainContent = (props) => {
   return (
     <main styleName="main-container">

@@ -14,7 +14,12 @@ const validate = values => {
     errors.errorMessage = 'Имя пользователя не может быть пустым.';
   } else if (!values.password) {
     errors.errorMessage = 'Пароль не может быть пустым.';
-  }
+  }else if (!/^[a-zA-Z0-9]+$/i.test(values.username)) {
+    errors.errorMessage = 'Не валидное имя';
+  // }else if (!/^[a-zA-Z0-9]+$/i.test(values.username)) {
+  //   errors.errorMessage = 'Не валидный пароль';
+   }
+
 
   return errors;
 };
@@ -51,7 +56,13 @@ const AuthForm = (props) => {
             Имя пользователя
           </label>
           <input id="username" type="text" name="username"
-            value={formik.values.username} onChange={formik.handleChange} />
+            value={formik.values.username} onChange={formik.handleChange} 
+            //pattern={[
+              //'^[a-zA-Z0-9]+$', // min 8 chars
+              // '(?=.*\\d)', // number required
+              // '(?=.*[A-Z])', // uppercase letter
+            //]}
+            />
         </p>
         <br />
 
