@@ -2,6 +2,10 @@ package com.example.lab4.Entities;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "shots")
@@ -9,14 +13,22 @@ public class Shot { //Модель, представляющая одно кон
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotNull
+    @Size(min = 3,max = 30)
     @Column(name = "owner",nullable = false)
     private String owner;
-    @Column(name = "x",nullable = false)
+    @NotNull
+    @Column(name = "x",nullable = false) //Graph -> Валидация на целостность не нужна
     private Integer x;
+    @NotNull
+    @Min(-5)
+    @Max(5)
     @Column(name = "y",nullable = false)
     private Double y;
-    @Column(name = "r",nullable = false)
+    @NotNull
+    @Column(name = "r",nullable = false) //Graph -> Валидация на целостность не нужна
     private Integer r;
+    @NotNull
     @Column(name = "status",nullable = false)
     private Boolean status;
 

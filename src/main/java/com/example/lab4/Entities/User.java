@@ -1,8 +1,7 @@
 package com.example.lab4.Entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,8 +15,11 @@ public class User implements UserDetails { //Модель, описывающа�
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotNull
+    @Size(min = 3,max = 30)
     @Column(name = "username", unique = true,nullable = false) //Валидация по длине на уровне фронта
     private String username;
+    @NotNull
     @Column(name = "password",nullable = false) //Валидация по длине на уровне фронта
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
