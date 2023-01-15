@@ -2,6 +2,8 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './FormButton.module.css';
 import {useState } from "react";
+import Input from 'react-toolbox/lib/input';
+import Checkbox from 'react-toolbox/lib/checkbox';
 import { useRef } from 'react';
 import Drawing from 'components/MainContent/GraphSection/Drawing';
 //import GraphSvg2 from 'components/MainContent/GraphSection/Graph/GraphsPlusR/GraphSvg2';
@@ -57,7 +59,7 @@ const FormButtonX = (props) => {
       
     <div>
 		  {/* <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)}  */}
-      <input type="checkbox" checked={checked} onClick={() => setChecked(!checked)}
+      <Input type="checkbox" checked={checked} onClick={() => setChecked(!checked)}
       onChange={() => props.selectValue(props.value)} value = {message} id = {props.value + "x"}/>
 		  {/* <div id = 'message' ref={props.mesRef}>{message}</div> */}
 	  </div>     
