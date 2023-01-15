@@ -10,9 +10,9 @@ const CLEAR_CURRENT = 'lab4/values/CLEAR_CURRENT';
 
 const initialState = {
   rValues: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
-  rCurrent: 1,
+  rCurrent: [0],
   xValues: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
-  xCurrent: undefined,
+  xCurrent: [],
   yMin: -5,
   yMax: 5,
   yCurrent: undefined,
@@ -57,10 +57,10 @@ export default function valuesReducer(state = initialState, action = {}) {
         {},
         state,
         {
-          rCurrent: 1,
-          xCurrent: undefined,
+          rCurrent: [1],
+          xCurrent: [],
           yCurrent: undefined,
-          mesCurrent: 0
+          //mesCurrent: 0
         }
       );
     default:
@@ -104,7 +104,7 @@ export const checkEntry = () => (dispatch, getState) => {
       } else {
         alert(`Непредвиденный ответ ${error.response.status} от сервера!`);
       }
-    });;
+    });
 }
 
 export const clearEntries = () => (dispatch) => {
