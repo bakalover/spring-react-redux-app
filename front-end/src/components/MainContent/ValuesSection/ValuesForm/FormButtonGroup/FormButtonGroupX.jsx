@@ -7,7 +7,7 @@ import FormButtonX from './FormButton/FormButtonX';
 const FormButtonGroupX = (props) => {
   return (
     <ul styleName="button-list">
-      {props.groupValues.map(value => <li styleName="button-list__item">
+      {props.groupValues.map(value => <li key={value} styleName="button-list__item">
         <FormButtonX value={value} valueCurrent={props.valueCurrent} selectValue={props.selectValue}/>
       </li>)}
     </ul>
