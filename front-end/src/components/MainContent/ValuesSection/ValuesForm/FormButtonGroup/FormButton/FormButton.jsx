@@ -1,6 +1,7 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './FormButton.module.css';
+//import Checkbox from 'react-toolbox/lib/checkbox';
 import {useState } from "react";
 import { useRef } from 'react';
 import Drawing from 'components/MainContent/GraphSection/Drawing';
@@ -14,13 +15,8 @@ const FormButton = (props) => {
   let message;
 
   const onChangeR = (e1, e2, e3)=>{
-    //setRValue(parseFloat(e));
-    //setRValueForSvg(parseFloat(e));
     if ((!checked)){
       message = props.value; 
-      //forDrow = props.value;
-      //alert(forDrow);
-      //mas.push(props.value);   
     }
     else {
       message = 0;
@@ -36,7 +32,7 @@ const FormButton = (props) => {
 
   const [checked, setChecked] = useState(false);
 
-  const ref = useRef(null);
+  //const ref = useRef(null);
 
  
   //let mas = [];
@@ -77,7 +73,7 @@ const FormButton = (props) => {
 	  </div>     */}
 
     <div>
-		  <input type="checkbox" checked={checked} onChange={(e1,e2,e3) => onChangeR(e1,e2,e3)} 
+		  <input type='checkbox' checked={checked} onChange={(e1,e2,e3) => onChangeR(e1,e2,e3)} 
       onClick={() => props.selectValue(props.value)} value = {props.value} id = {props.value}/>
 		  {/* <div id = 'message'>{message}</div> */}
 	  </div>   
