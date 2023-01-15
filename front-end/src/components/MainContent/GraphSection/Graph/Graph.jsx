@@ -6,6 +6,7 @@ import styles from './Graph.module.css';
 //import FormButton from 'components/MainContent/ValuesSection/ValuesForm/FormButtonGroup/FormButton/FormButton';
 import GraphSvg1 from './GraphSvg1';
 import Canvas from './Canvas/Canvas';
+import { hitCheck } from '../HitCheck';
 
 //разобраться с тем, как выбирается X при клике!!!
 const Graph = (props) => {
@@ -83,7 +84,9 @@ const Graph = (props) => {
 
   const drawCurrent = (canvas, canvasCtx) => {
 
-    arr[props.xCurrent] = props.xCurrent;
+    //alert(props.xCurrent);
+
+    //arr[props.xCurrent] = props.xCurrent;
     
     //clearCanvas(canvas, canvasCtx);
 
@@ -108,7 +111,10 @@ const Graph = (props) => {
     
     //alert(props.xCurrent);
     
-
+    //for (let i = 0; i < props.xCurrent.length; i++) {
+     
+      
+    
     const x  = 150 + props.xCurrent/4 * 100;
     const y = 150 - props.yCurrent/4 * 100;
 
@@ -120,12 +126,12 @@ const Graph = (props) => {
     if (x > canvas.width || x < 0 ||
       y > canvas.height || y < 0) {
       return;
-    }
-
-    //alert(props.xCurrent);
-
+    
+      }
+    
+    
+    canvasCtx.fillStyle = hitCheck(props.xCurrent, props.yCurrent, props.rCurrent) ? 'green' : 'red';
     //canvasCtx.setLineDash([2, 2]);
-    canvasCtx.fillStyle = 'black';
     canvasCtx.beginPath();
     // canvasCtx.moveTo(x, canvas.width / 2);
     // canvasCtx.lineTo(x, y);
@@ -135,7 +141,7 @@ const Graph = (props) => {
     // canvasCtx.stroke();
     canvasCtx.arc(x, y, 2, 0, 2 * Math.PI);
     canvasCtx.fill();
-
+  }
 
     // if (props.xCurrent==="-4n"){
     //   canvasCtx.clearRect(150 + -4/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
@@ -197,7 +203,7 @@ const Graph = (props) => {
     //   canvasCtx.clearRect(150 + 4/4 * 100-2, y-2, 2 * Math.PI,2 * Math.PI);
     // }
 
-  }
+  //}
 
   const handleClick = (canvasRef, event) => {
     //const canvas = canvasRef.current;
@@ -232,16 +238,17 @@ const Graph = (props) => {
       canvasY = props.yMax;
     }
 
-    //alert(canvasX);
-    //alert(canvasY);
-
-    //props.selectX(nearestX);
+   
+    //alert(props.rCurrent);
+    
+    
     props.selectX(canvasX);
     props.changeY(canvasY.toString().substring(0, 7));
 
-    
-    //const x  = 150 + props.xCurrent/4 * 100;
-    //const y = 150 - props.yCurrent/4 * 100;
+    //document.querySelector("#root > div > main > div > section.content-section.main_column-container__item__Jnh6e.ValuesSection_section__8jEMh > form > div.ValuesForm_values-form__control-container__K8BRu > button:nth-child(1)")
+
+    //document.getElementById("Проверить").click();
+  
 
     
   }
@@ -290,12 +297,12 @@ const Graph = (props) => {
   // console.log("");
 
   console.log(masR);
-  if(props.xCurrent!==undefined){
-    if(props.xCurrent.length>2){
-      props.xCurrent = undefined;
-    }
+  // if(props.xCurrent!==undefined){
+  //   if(props.xCurrent.length>2){
+  //     props.xCurrent = undefined;
+  //   }
 
-  }
+  
   
   // alert(props.xCurrent);
 
