@@ -10,11 +10,11 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
-    public static final String MESSAGE_PREFIX = "/auto";
+    public static final String MESSAGE_PREFIX = "/topic";
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/changing").withSockJS();
+        registry.addEndpoint("/payroll").withSockJS();
     }
 
     @Override

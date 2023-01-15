@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/auth")
 public class RegistrationController {
@@ -22,8 +24,8 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/registration")
-    ResponseEntity<?> register(@RequestBody User userReq) {
+    @PostMapping("/register")
+    ResponseEntity<?> register(@Valid @RequestBody User userReq) {
         try {
             if (userService.loadUserByUsername(userReq.getUsername()) != null) {
                 throw new Exception();
@@ -36,7 +38,7 @@ public class RegistrationController {
         }
     }
     @PostMapping("/login")
-    ResponseEntity<?> login(@RequestBody User userReq) {
+    ResponseEntity<?> login(@Valid @RequestBody User userReq) {
         try {
             User user = (User) userService.loadUserByUsername(userReq.getUsername());
             if (user == null) {
