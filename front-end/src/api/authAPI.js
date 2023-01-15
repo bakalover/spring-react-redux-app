@@ -13,7 +13,7 @@ const authAPI = {
 
   async register(username, password) {
     //return axiosInstance.post('registration', { username, password });
-    return axiosInstance.post('registration', { username:username, password:password });
+    return axiosInstance.post('register', { username:username, password:password });
   },
 }
 
