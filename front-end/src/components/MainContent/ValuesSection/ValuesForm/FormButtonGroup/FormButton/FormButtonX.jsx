@@ -15,37 +15,35 @@ const FormButtonX = (props) => {
   let forRemoveDrow;
   let message;
 
-  const onChangeR = (e1, e2, e3)=>{
-    //setRValue(parseFloat(e));
-    //setRValueForSvg(parseFloat(e));
-    if ((!checked)){
-      message = props.value; 
-      //forDrow = props.value;
-      //alert(forDrow);
-      //mas.push(props.value);   
-    }
-    else {
-      message = props.value;
-      forRemoveDrow = props.value;
-      //alert(forDrow);
-    }
-    //setChecked(!checked);
-
-    //{Drawing.svgDrawing(props.value, message, forRemoveDrow);}
-    //Drawing.svgDrawing(props.value);
-}
 
   let forpr;
   const [checked, setChecked] = useState(false);
 
   //const ref = useRef(null);
 
- 
+  const changeValX = ()=>{
+    if(!checked){ // Реверсия checked (при нажатии используется предыдущее состояние)
+      props.selectValue([...props.valueCurrent, props.value]);
+    }
+    else{
+      var k = 0;
+      for(let i = 0; i<props.valueCurrent.length; i++){
+        if(props.valueCurrent[i]===props.value){
+          k = i;
+          break;
+        }
+      }
+      let newCurrent = props.valueCurrent;
+      newCurrent.splice(k,1);              // Нельзя менять состояние props.valueCurrent не через reduce-ер (то есть напрямую), поэтому создаём копию состояния для безопаной работы
+      props.selectValue(newCurrent);
+    }
+  }
+
   //let mas = [];
 	if ((!checked)){
     message = props.value;
     forpr = props.value
-    //mas.push(props.value);   
+    //mas.push(props.value);
 	}
   else {
 		message = props.value + "n";
@@ -56,18 +54,18 @@ const FormButtonX = (props) => {
   //console.log("mas:" + mas);
   return (
     <div>
-      
+
     <div>
 		  {/* <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)}  */}
-      <Input type="checkbox" checked={checked} onClick={() => setChecked(!checked)}
-      onChange={() => props.selectValue(props.value)} value = {message} id = {props.value + "x"}/>
+      <Input type="checkbox" checked={checked} onClick={() => changeValX()}
+      onChange={()=>setChecked(!checked)} value = {message} id = {props.value + "x"}/>
 		  {/* <div id = 'message' ref={props.mesRef}>{message}</div> */}
-	  </div>     
-      
+	  </div>
+
       <label>
         {props.value}
       </label>
-    
+
 
 
     </div>

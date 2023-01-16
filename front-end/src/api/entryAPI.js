@@ -15,20 +15,20 @@ const entryAPI = {
     });
   },
 
-  async checkEntry(x, y, r, token, status) {
+   checkEntry(x, y, r, token, status) { // Для тестирования в вызовах - бредовые данные
+    let promises = [];
     for (let i = 0; i < x.length; i++) {
-      const elementX = x[i];
       for (let j = 0; j < r.length; j++) {
-        const elementR = r[j];
-        axiosInstance.post('', {x, y, r, token, status}, {
+        promises = [...promises, axiosInstance.post('add', {owner:"ashgdkajshdkahshk", x:x[i], y:y, r:r[j], status:status}, {
           headers: {
-            //Authorization: 'Bearer' + token
             Authorization: 'token:' + token
           }
-        });
+        })];
       }
 
     }
+    console.log(promises);
+    Promise.all(promises).catch();
     // return axiosInstance.post('', {x, y, r, token, status}, {
     //   headers: {
     //     Authorization: 'Bearer' + token

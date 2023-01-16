@@ -10,7 +10,7 @@ const CLEAR_CURRENT = 'lab4/values/CLEAR_CURRENT';
 
 const initialState = {
   rValues: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
-  rCurrent: [0],
+  rCurrent: [],
   xValues: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
   xCurrent: [],
   yMin: -5,
@@ -57,7 +57,7 @@ export default function valuesReducer(state = initialState, action = {}) {
         {},
         state,
         {
-          rCurrent: [1],
+          rCurrent: [],
           xCurrent: [],
           yCurrent: undefined,
           //mesCurrent: 0
@@ -90,8 +90,8 @@ export const checkEntry = () => (dispatch, getState) => {
     getState().values.xCurrent,
     getState().values.yCurrent,
     getState().values.rCurrent,
-    JSON.parse(localStorage.getItem('userWl4')).jwt)
-    .then(response => {
+    JSON.parse(localStorage.getItem('userWl4')).token, true)
+    /*.then(response => {
       if (response.status === 200) {
         dispatch(addEntry(response.data));
       } else {
@@ -104,7 +104,7 @@ export const checkEntry = () => (dispatch, getState) => {
       } else {
         alert(`Непредвиденный ответ ${error.response.status} от сервера!`);
       }
-    });
+    })*/;
 }
 
 export const clearEntries = () => (dispatch) => {
