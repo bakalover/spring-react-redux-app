@@ -15,14 +15,23 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/auth")
 public class RegistrationController {
-    @Autowired
     JwtUtil jwtUtil;
-
     @Autowired
+    public void setJwtUtil(JwtUtil jwtUtil){
+        this.jwtUtil = jwtUtil;
+    }
+
     private PasswordEncoder passwordEncoder;
-
     @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder){
+        this.passwordEncoder = passwordEncoder;
+    }
+
     private UserService userService;
+    @Autowired
+    public void setUserService(UserService userService){
+        this.userService = userService;
+    }
 
     @PostMapping("/register")
     ResponseEntity<?> register(@Valid @RequestBody User userReq) {

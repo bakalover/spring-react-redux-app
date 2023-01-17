@@ -19,11 +19,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter { // Класс настроек защиты -> пароли и авторизация
-    @Autowired
     UserService userService;
-
     @Autowired
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     private StartAuth unauthorized;
+    @Autowired
+
+    public void setUnauthorized(StartAuth unauthorized) {
+        this.unauthorized = unauthorized;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

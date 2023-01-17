@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Loader implements CommandLineRunner {
+    private RoleRepository repository;
+
     @Autowired
-    private final RoleRepository repository;
+    public void setRoleRepository(RoleRepository repository){
+        this.repository = repository;
+    }
 
     public Loader(RoleRepository repository) {
         this.repository = repository;

@@ -12,8 +12,11 @@ import java.util.List;
 @Service
 @Transactional
 public class ShotService {
-    @Autowired
     private ShotRepository shotRepository;
+    @Autowired
+    public void setShotRepository(ShotRepository shotRepository) {
+        this.shotRepository = shotRepository;
+    }
 
     public Shot addShot(Shot shot){
         return shotRepository.save(shot);

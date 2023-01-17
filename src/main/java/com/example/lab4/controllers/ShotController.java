@@ -15,8 +15,11 @@ import java.security.Principal;
 @RestController //Добаляет @ResponseBody -> ответ высылается в виде json внутри http response
 @RequestMapping("/api/shots")
 public class ShotController {
-    @Autowired
     private ShotService shotService;
+    @Autowired
+    public void setShotService(ShotService shotService){
+        this.shotService = shotService;
+    }
 
     @GetMapping("/user") // .../api/shots/user -> Запрос всех точек определённого пользователя - Через Principal можно будет получать только свои иначе можно добавть новый get сетод на новый url
     ResponseEntity<?> getUserShots(@RequestBody String username){ //Testing ((@Valid @RequestBody Principal principal))

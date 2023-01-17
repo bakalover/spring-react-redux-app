@@ -22,8 +22,11 @@ import java.util.List;
 @Service
 @Transactional
 public class UserService implements UserDetailsService {
-    @Autowired
     private UserRepository userRepository;
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public boolean add(User user){
         if(userRepository.findByUsername(user.getUsername())!=null){

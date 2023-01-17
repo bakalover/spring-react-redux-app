@@ -16,11 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class TokenFilter extends OncePerRequestFilter {
+    private JwtUtil jwtUtil;
     @Autowired
-    private JwtUtil Util;
+    public void setJwtUtil(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
+    }
 
-    @Autowired
     private UserService userService;
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     private String parse(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization"); // На фронте формируем заголовок вида Authorization:token:xxxxxxxxxxxxxxxxx
@@ -34,8 +40,8 @@ public class TokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             String token = parse(request);
-            if (token != null && Util.validate(token)) {
-                String username = Util.getUsername(token);
+            if (token != null && jwtUtil.validate(token)) {
+                String username = jwtUtil.getUsername(token);
                 UserDetails user = userService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
