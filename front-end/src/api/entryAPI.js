@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {hitCheck} from "../components/MainContent/GraphSection/HitCheck";
 
 const axiosInstance = axios.create({
   //baseURL: 'http://localhost:3000/lab4/api/entries/'
@@ -15,11 +16,11 @@ const entryAPI = {
     });
   },
 
-   checkEntry(x, y, r, token, status) { // Для тестирования в вызовах - бредовые данные
+   checkEntry(owner,x, y, r,token) { // Для тестирования в вызовах - бредовые данные
     let promises = [];
     for (let i = 0; i < x.length; i++) {
       for (let j = 0; j < r.length; j++) {
-        promises = [...promises, axiosInstance.post('add', {owner:"ashgdkajshdkahshk", x:x[i], y:y, r:r[j], status:status}, {
+        promises = [...promises, axiosInstance.post('add', {owner:owner, x:x[i], y:y, r:r[j], status:hitCheck(x[i],y,r[j])}, {
           headers: {
             Authorization: 'token:' + token
           }

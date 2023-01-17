@@ -87,10 +87,11 @@ export function clearCurrent() {
 
 export const checkEntry = () => (dispatch, getState) => {
   entryAPI.checkEntry(
+    JSON.parse(localStorage.getItem('userWl4')).username,
     getState().values.xCurrent,
     getState().values.yCurrent,
     getState().values.rCurrent,
-    JSON.parse(localStorage.getItem('userWl4')).token, true)
+    JSON.parse(localStorage.getItem('userWl4')).token)
     /*.then(response => {
       if (response.status === 200) {
         dispatch(addEntry(response.data));
