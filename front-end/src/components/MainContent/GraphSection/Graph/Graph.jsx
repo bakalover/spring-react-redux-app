@@ -84,7 +84,6 @@ const Graph = (props) => {
   }
 
   const drawCurrent = (canvas, canvasCtx) => {
-    console.log("ashdhasjkjhdhahdakhdfdlkdjlj");
     //alert(props.xCurrent);
 
     //arr[props.xCurrent] = props.xCurrent;
@@ -207,6 +206,8 @@ const Graph = (props) => {
   //}
 
   const handleClick = (canvasRef, event) => {
+    const currentCanvas = currentCanvasRef.current;
+    const currentCanvasCtx = currentCanvas.getContext('2d');
     //const canvas = canvasRef.current;
 
     //let canvasX = (event.nativeEvent.offsetX - canvas.width / 2) / canone * props.rCurrent;
@@ -220,6 +221,10 @@ const Graph = (props) => {
     let owner_token = JSON.parse(localStorage.getItem('userWl4'));
     entryAPI.checkEntry(owner_token.username,canvasX,canvasY,props.rCurrent,owner_token.token);
 
+    currentCanvasCtx.fillStyle = hitCheck(canvasX, canvasY, props.rCurrent[0]) ? 'green' : 'red';
+    currentCanvasCtx.beginPath();
+    currentCanvasCtx.arc(event.nativeEvent.offsetX, event.nativeEvent.offsetY, 2, 0, 2 * Math.PI);
+    currentCanvasCtx.fill();
     //let canvasX = ((props.rCurrent * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent);
 
     // alert(props.rCurrent);
