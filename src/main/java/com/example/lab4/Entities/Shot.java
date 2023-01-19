@@ -19,7 +19,7 @@ public class Shot { //Модель, представляющая одно кон
     private String owner;
     @NotNull
     @Column(name = "x",nullable = false) //Graph -> Валидация на целостность не нужна
-    private Integer x;
+    private Double x;
     @NotNull
     @Min(-5)
     @Max(5)
@@ -34,7 +34,7 @@ public class Shot { //Модель, представляющая одно кон
 
     //-------------------CONSTRUCTORS----------------------
     public Shot(){}
-    public Shot(String owner, Integer x, Double y,Integer r, Boolean status){ //Либо добавить валидацию либо получать status с фронта
+    public Shot(String owner, Double x, Double y,Integer r, Boolean status){ //Либо добавить валидацию либо получать status с фронта
         this.owner = owner;
         this.x = x;
         this.y = y;
@@ -53,7 +53,7 @@ public class Shot { //Модель, представляющая одно кон
         this.owner = owner;
     }
 
-    public void setX(Integer x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
@@ -80,7 +80,7 @@ public class Shot { //Модель, представляющая одно кон
         return owner;
     }
 
-    public Integer getX() {
+    public Double getX() {
         return x;
     }
 

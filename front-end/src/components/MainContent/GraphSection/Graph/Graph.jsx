@@ -28,8 +28,8 @@ const Graph = (props) => {
       canvasCtx.fillStyle = entry.status ? 'green' : 'red';
       canvasCtx.beginPath();
       canvasCtx.arc(
-        150 + entry.x/4 * 100,
-        150 - entry.y/4 * 100,
+        150 + entry.x / 4 * 100,
+        150 - entry.y / 4 * 100,
         2, 0, 2 * Math.PI);
       canvasCtx.fill();
     }
@@ -214,14 +214,16 @@ const Graph = (props) => {
 
     //Пересчёт координат, очевидно, при разных радиусах приведёт к одинаковому результату,
     //поэтому можно посчитать только при одном радиусе ,например при props.rCurrent[0]
-    let canvasX = [((props.rCurrent[0] * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent[0])];
+    let canvasX = ((props.rCurrent[0] * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent[0]);
     let canvasY = ((props.rCurrent[0] * (150 - event.nativeEvent.offsetY))/100) * (4/props.rCurrent[0]);
     // checkEntry - настроена на массивы по x и r, в данном случае canvasX - массив из одного элемента
-    console.log(canvasX,canvasY,props.rCurrent);
     let owner_token = JSON.parse(localStorage.getItem('userWl4'));
-    entryAPI.checkEntry(owner_token.username,canvasX,canvasY,props.rCurrent,owner_token.token);
-
-    currentCanvasCtx.fillStyle = hitCheck(canvasX, canvasY, props.rCurrent[0]) ? 'green' : 'red';
+    entryAPI.checkEntry(owner_token.username,[canvasX],canvasY,props.rCurrent,owner_token.token);
+    let checkHit = false;
+    for (let i = 0; i < props.rCurrent.length; i++) {
+      checkHit = checkHit || hitCheck(canvasX, canvasY, props.rCurrent[i]);
+    }
+    currentCanvasCtx.fillStyle = checkHit ? 'green' : 'red';
     currentCanvasCtx.beginPath();
     currentCanvasCtx.arc(event.nativeEvent.offsetX, event.nativeEvent.offsetY, 2, 0, 2 * Math.PI);
     currentCanvasCtx.fill();

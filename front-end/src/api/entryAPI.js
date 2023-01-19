@@ -28,7 +28,6 @@ const entryAPI = {
       }
 
     }
-    console.log(promises);
     Promise.all(promises).catch();
     // return axiosInstance.post('', {x, y, r, token, status}, {
     //   headers: {
