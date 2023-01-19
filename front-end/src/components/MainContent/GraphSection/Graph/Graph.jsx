@@ -7,6 +7,7 @@ import styles from './Graph.module.css';
 import GraphSvg1 from './GraphSvg1';
 import Canvas from './Canvas/Canvas';
 import { hitCheck } from '../HitCheck';
+import entryAPI from "../../../../api/entryAPI";
 
 //разобраться с тем, как выбирается X при клике!!!
 const Graph = (props) => {
@@ -24,7 +25,7 @@ const Graph = (props) => {
 
   const loadPrevPoints = (canvas, canvasCtx) => {
     for (let entry of props.entries) {
-      canvasCtx.fillStyle = entry.result ? 'green' : 'red';
+      canvasCtx.fillStyle = entry.status ? 'green' : 'red';
       canvasCtx.beginPath();
       canvasCtx.arc(
         150 + entry.x/4 * 100,
@@ -83,11 +84,11 @@ const Graph = (props) => {
   }
 
   const drawCurrent = (canvas, canvasCtx) => {
-
+    console.log("ashdhasjkjhdhahdakhdfdlkdjlj");
     //alert(props.xCurrent);
 
     //arr[props.xCurrent] = props.xCurrent;
-    
+
     //clearCanvas(canvas, canvasCtx);
 
     //alert(props.rCurrent);
@@ -108,17 +109,17 @@ const Graph = (props) => {
     // if (props.xCurrent !== undefined){
     //   alert(document.getElementById(props.xCurrent + "x").getAttribute("value"));
     // }
-    
+
     //alert(props.xCurrent);
-    
+
     //for (let i = 0; i < props.xCurrent.length; i++) {
-     
-      
-    
+
+
+
     const x  = 150 + props.xCurrent/4 * 100;
     const y = 150 - props.yCurrent/4 * 100;
 
-    
+
     //alert(x);
     //alert(x2);
     //alert(props.xCurrent);
@@ -126,10 +127,10 @@ const Graph = (props) => {
     if (x > canvas.width || x < 0 ||
       y > canvas.height || y < 0) {
       return;
-    
+
       }
-    
-    
+
+
     canvasCtx.fillStyle = hitCheck(props.xCurrent, props.yCurrent, props.rCurrent) ? 'green' : 'red';
     //canvasCtx.setLineDash([2, 2]);
     canvasCtx.beginPath();
@@ -137,7 +138,7 @@ const Graph = (props) => {
     // canvasCtx.lineTo(x, y);
     // canvasCtx.moveTo(canvas.height / 2, y);
     // canvasCtx.lineTo(x, y);
-    
+
     // canvasCtx.stroke();
     canvasCtx.arc(x, y, 2, 0, 2 * Math.PI);
     canvasCtx.fill();
@@ -210,15 +211,24 @@ const Graph = (props) => {
 
     //let canvasX = (event.nativeEvent.offsetX - canvas.width / 2) / canone * props.rCurrent;
 
-    let canvasX = ((props.rCurrent * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent);
+    //Пересчёт координат, очевидно, при разных радиусах приведёт к одинаковому результату,
+    //поэтому можно посчитать только при одном радиусе ,например при props.rCurrent[0]
+    let canvasX = [((props.rCurrent[0] * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent[0])];
+    let canvasY = ((props.rCurrent[0] * (150 - event.nativeEvent.offsetY))/100) * (4/props.rCurrent[0]);
+    // checkEntry - настроена на массивы по x и r, в данном случае canvasX - массив из одного элемента
+    console.log(canvasX,canvasY,props.rCurrent);
+    let owner_token = JSON.parse(localStorage.getItem('userWl4'));
+    entryAPI.checkEntry(owner_token.username,canvasX,canvasY,props.rCurrent,owner_token.token);
+
+    //let canvasX = ((props.rCurrent * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent);
 
     // alert(props.rCurrent);
     // alert(event.nativeEvent.offsetX);
 
-    let minDiff = Infinity;
+   /* let minDiff = Infinity;
 
-    
-  
+
+
 
     //let nearestX;
 
@@ -227,30 +237,29 @@ const Graph = (props) => {
         minDiff = Math.abs(canvasX - props.xValues[i]);
         //nearestX = props.xValues[i];
       }
-    }
+    }*/
 
     //let canvasY = (-event.nativeEvent.offsetY + canvas.height / 2) / canone * props.rCurrent;
-    let canvasY = ((props.rCurrent * (150 - event.nativeEvent.offsetY))/100) * (4/props.rCurrent);
+    //let canvasY = ((props.rCurrent * (150 - event.nativeEvent.offsetY))/100) * (4/props.rCurrent);
 
-    if (canvasY < props.yMin) {
+    /*if (canvasY < props.yMin) {
       canvasY = props.yMin;
     } else if (canvasY > props.yMax) {
       canvasY = props.yMax;
-    }
+    }*/
 
-   
+
     //alert(props.rCurrent);
-    
-    
-    props.selectX(canvasX);
-    props.changeY(canvasY.toString().substring(0, 7));
+
+
+    //props.selectX(canvasX);
+    //props.changeY(canvasY.toString().substring(0, 7));
 
     //document.querySelector("#root > div > main > div > section.content-section.main_column-container__item__Jnh6e.ValuesSection_section__8jEMh > form > div.ValuesForm_values-form__control-container__K8BRu > button:nth-child(1)")
 
     //document.getElementById("Проверить").click();
-  
 
-    
+
   }
 
   useEffect(() => {
@@ -267,13 +276,13 @@ const Graph = (props) => {
     drawCurrent(currentCanvas, currentCanvasCtx);
     clearCurrent(currentCanvas, currentCanvasCtx);
     //alert(arr);
-    
+
   });
 
   let image = <GraphSvg1 rValue={props.rCurrent} />;
-  
- 
-  masR.push(props.xCurrent, props.yCurrent, props.rCurrent);
+
+
+  //masR.push(props.xCurrent, props.yCurrent, props.rCurrent);
 
   // const [checked, setChecked] = useState(false);
 
@@ -283,7 +292,7 @@ const Graph = (props) => {
 	// }
   // if ((checked)){
   //   message = <GraphSvg1 rValue={props.rCurrent} />
-	// } 
+	// }
   // else {
 	// 	message = null
 	// }
@@ -296,29 +305,29 @@ const Graph = (props) => {
   // console.log(props.yCurrent);
   // console.log("");
 
-  console.log(masR);
+  //console.log(masR);
   // if(props.xCurrent!==undefined){
   //   if(props.xCurrent.length>2){
   //     props.xCurrent = undefined;
   //   }
 
-  
-  
+
+
   // alert(props.xCurrent);
 
   //alert(arr);
 
   return (
         <div styleName="graph-container" id='wrapper'>
-          {image}         
+          {image}
           <Canvas canvasRef={pointsCanvasRef} alt="Интерактивная область графика (предыдущие точки)"/>
           <Canvas canvasRef={currentCanvasRef} alt="Интерактивная область графика (текущая точка)"  handleClick = {handleClick}/>
         </div>
-      
+
 
       );
 
-  
+
 }
 
 export default CSSModules(Graph, styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' });

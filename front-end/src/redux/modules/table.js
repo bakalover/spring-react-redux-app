@@ -71,5 +71,5 @@ export const getEntries = () => (dispatch) => {
         alert(`Непредвиденный ответ ${error.response.status} от сервера!`);
       }
       dispatch(setLoading(false));
-    });;
+    });
 }
