@@ -2,9 +2,9 @@ import authAPI from 'api/authAPI';
 import { getEntries, clearEntries } from './table';
 import { clearCurrent } from './values';
 
-const SET_LOADING = 'web-lab4/auth/SET_LOADING';
-const SET_SERVER_ERROR_MESSAGE = 'web-lab4/auth/SET_SERVER_ERROR_MESSAGE';
-const SET_LOGGED_USER = 'web-lab4/auth/SET_LOGGED_USER';
+const SET_LOADING = 'lab4/auth/SET_LOADING';
+const SET_SERVER_ERROR_MESSAGE = 'lab4/auth/SET_SERVER_ERROR_MESSAGE';
+const SET_LOGGED_USER = 'lab4/auth/SET_LOGGED_USER';
 
 const initialState = {
   isLoading: false,
@@ -68,6 +68,7 @@ export const login = (username, password) => (dispatch) => {
     .then(response => {
       if (response.status === 200) {
         localStorage.setItem('userWl4', JSON.stringify(response.data));
+        //localStorage.setItem('userWl4', response.data.token);
         dispatch(setLoggedUser(response.data.username));
         dispatch(getEntries());
       } else {

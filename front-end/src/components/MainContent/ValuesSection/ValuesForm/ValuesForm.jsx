@@ -10,7 +10,7 @@ import FormButtonGroupX from './FormButtonGroup/FormButtonGroupX';
 const CHECK = 'check';
 const CLEAR = 'clear';
 
-const validateForm = values => {
+const validateForm = values => { // Поправить валидацию с учётом того, что rCurrent и xCurrent - числа
   let isNumeric = num => {
     return !isNaN(parseFloat(num)) && isFinite(num);
   }
@@ -47,10 +47,11 @@ const ValuesForm = (props) => {
 
     switch (action) {
       case CHECK:
-        let message = validateForm(props);
+        /*let message = validateForm(props);
         if (message === '') {
           props.checkEntry();
-        }
+        }*/
+        props.checkEntry();
         break;
       case CLEAR:
         props.clearEntries();
@@ -72,8 +73,8 @@ const ValuesForm = (props) => {
   // let message;
   // let mas = [];
 	// if ((checked)){
-  //   message = props.value; 
-  //   mas.push(props.value);   
+  //   message = props.value;
+  //   mas.push(props.value);
 	// }
   // else {
 	// 	message = 0;
@@ -92,14 +93,14 @@ const ValuesForm = (props) => {
             R
           </span>
         </label>
-        {/* <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} 
-          onClick={() => props.selectValue(1)} value = {1} groupValues={props.rValues} valueCurrent={props.rCurrent} 
+        {/* <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)}
+          onClick={() => props.selectValue(1)} value = {1} groupValues={props.rValues} valueCurrent={props.rCurrent}
           selectValue={props.selectR}/>
 		    <div id = 'message'>{message}</div> */}
         <div styleName="values-form__control">
           <FormButtonGroup groupValues={props.rValues} valueCurrent={props.rCurrent} selectValue={props.selectR}/>
         </div>
-        
+
       </div>
 
       <div styleName="values-form__container">

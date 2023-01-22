@@ -1,9 +1,9 @@
 import entryAPI from 'api/entryAPI';
 import { setLoading, logout } from './auth';
 
-const SET_ENTRIES = 'web-lab4/table/SET_ENTRIES';
-const CLEAR_ENTRIES = 'web-lab4/table/CLEAR_ENTRIES';
-const ADD_ENTRY = 'web-lab4/table/ADD_ENTRY';
+const SET_ENTRIES = 'lab4/table/SET_ENTRIES';
+const CLEAR_ENTRIES = 'lab4/table/CLEAR_ENTRIES';
+const ADD_ENTRY = 'lab4/table/ADD_ENTRY';
 
 const initialState = {
   entries: []
@@ -54,7 +54,8 @@ export function addEntry(value) {
 
 export const getEntries = () => (dispatch) => {
   dispatch(setLoading(true));
-  entryAPI.getEntries(JSON.parse(localStorage.getItem('userWl4')).jwt)
+  entryAPI.getEntries(JSON.parse(localStorage.getItem('userWl4')).token)
+  //entryAPI.getEntries(localStorage.getItem('userWl4'))
     .then(response => {
       if (response.status === 200) {
         dispatch(setEntries(response.data));
@@ -70,5 +71,5 @@ export const getEntries = () => (dispatch) => {
         alert(`Непредвиденный ответ ${error.response.status} от сервера!`);
       }
       dispatch(setLoading(false));
-    });;
+    });
 }

@@ -32,7 +32,11 @@ const App = (props) => {
         <MainContent />
       </div>
     );
-   } //else {
+
+  //   if (props.logout){
+
+  //   }
+  //  } else {
   //   return (
   //     <div>
   //       <HeaderContainer />
@@ -41,6 +45,6 @@ const App = (props) => {
   //     </div>
   //   );
   // }
-//}
+ }
 
 export default App;

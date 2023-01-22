@@ -1,33 +1,48 @@
 import axios from 'axios';
+import {hitCheck} from "../components/MainContent/GraphSection/HitCheck";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/lab4/api/entries/'
+  //baseURL: 'http://localhost:3000/lab4/api/entries/'
+  baseURL: 'http://localhost:8080/api/shots/'
 });
 
 const entryAPI = {
   async getEntries(token) {
-    return axiosInstance.get('', {
+    return axiosInstance.get('all', {
       headers: {
-        Authorization: 'Bearer ' + token
+        Authorization: 'token:' + token
+        //Authorization: 'token:' + token
       }
     });
   },
 
-  async checkEntry(x, y, r, token) {
-    return axiosInstance.post('', { x, y, r }, {
-      headers: {
-        Authorization: 'Bearer ' + token
+   checkEntry(owner,x, y, r,token) { // Для тестирования в вызовах - бредовые данные
+    let promises = [];
+    for (let i = 0; i < x.length; i++) {
+      for (let j = 0; j < r.length; j++) {
+        promises = [...promises, axiosInstance.post('add', {owner:owner, x:x[i], y:y, r:r[j], status:hitCheck(x[i],y,r[j])}, {
+          headers: {
+            Authorization: 'token:' + token
+          }
+        })];
       }
-    });
+
+    }
+    Promise.all(promises).catch();
+    // return axiosInstance.post('', {x, y, r, token, status}, {
+    //   headers: {
+    //     Authorization: 'Bearer' + token
+    //   }
+    // });
   },
 
-  async clearEntries(token) {
-    return axiosInstance.delete('', {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    });
-  }
+  // async clearEntries(token) {
+  //   return axiosInstance.delete('', {
+  //     headers: {
+  //       Authorization: 'Bearer' + token
+  //     }
+  //   });
+  // }
 }
 
 export default entryAPI;

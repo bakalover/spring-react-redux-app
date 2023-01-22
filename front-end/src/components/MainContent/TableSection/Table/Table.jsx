@@ -13,7 +13,7 @@ const Table = (props) => {
           <th>R</th>
           <th>Результат</th>
         </tr>
-        {props.entries.map(entry => <Entry x={entry.x} y={entry.y} r={entry.r} result={entry.result} />)}
+        {props.entries.map(entry => <Entry x={entry.x} y={entry.y} r={entry.r} result={entry.status} />)}
       </table>
     </div>
   );
