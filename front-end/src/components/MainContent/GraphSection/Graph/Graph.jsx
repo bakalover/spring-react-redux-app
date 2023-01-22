@@ -280,10 +280,9 @@ const Graph = (props) => {
     //clearCanvas(currentCanvas, currentCanvasCtx);
 
     loadPrevPoints(pointsCanvas, pointsCanvasCtx);
-    drawCurrent(currentCanvas, currentCanvasCtx);
+    //drawCurrent(currentCanvas, currentCanvasCtx); Why?? -> disabled (рисовало точки без их отправки)
     clearCurrent(currentCanvas, currentCanvasCtx);
-    //alert(arr);
-
+    //alert(arr);32
   });
 
   let image = <GraphSvg1 rValue={props.rCurrent} />;

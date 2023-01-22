@@ -3,7 +3,7 @@ export default class Drawing{
     static svgDrawing(r, m, fDr){
         //alert(r);
         //alert(ch);
-        
+
         // if (r<0){
         //     r = 0;
         // }
@@ -21,7 +21,7 @@ export default class Drawing{
         let circle_val = Math.abs(r) * 25;
 
 
-        
+
         // let val_201 = 100 - (50 * r);
         // let val_101 = 100 + (50 * r);
         // let val_51 = 100 + (100 * r);
@@ -29,7 +29,7 @@ export default class Drawing{
 
         //let circe_val = 100 - (33 * 2 * (1-r));
 
-        
+
         // if (chb.checked){
         //     alert("yeees");
         // }
@@ -37,9 +37,9 @@ export default class Drawing{
         //     alert("nooo");
         // }
 
-        
 
-        
+
+
 
         // let chb = document.getElementById(m);
         // let dn = chb.getAttribute("id");
@@ -155,10 +155,10 @@ export default class Drawing{
 
         // if (m !==0){
         //     //alert(m + "yee")
-        //     checkB = document.getElementById(m); 
+        //     checkB = document.getElementById(m);
         // }
-        
-        
+
+
         if(m===0){
             //alert(m);
             //alert(fDr);
@@ -216,7 +216,7 @@ export default class Drawing{
         // else if (r!=2 && ch){
         //     rect1.removeAttribute("points");
         // }
-        
+
 
         // rect.setAttribute("points" , "150,150 150," + val_51 + " " + val_101 +"," + val_51 + " " + val_101 + ",150");
         // triangle.setAttribute("points" , "150,150 " + val_201 +",150 150," + val_101);

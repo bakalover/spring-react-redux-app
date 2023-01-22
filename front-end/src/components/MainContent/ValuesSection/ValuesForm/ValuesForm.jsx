@@ -12,7 +12,12 @@ const CLEAR = 'clear';
 
 const validateForm = values => { // Поправить валидацию с учётом того, что rCurrent и xCurrent - числа
   let isNumeric = num => {
-    return !isNaN(parseFloat(num)) && isFinite(num);
+    for (let i = 0; i<num.length; i++){
+      if(!(!isNaN(parseFloat(num[i])) && isFinite(num[i]))){
+        return false;
+      }
+    }
+    return true;
   }
 
   if (!isNumeric(values.rCurrent) || !values.rValues.includes(parseFloat(values.rCurrent))) {
@@ -23,7 +28,7 @@ const validateForm = values => { // Поправить валидацию с у�
     return 'Выберите значение X!';
   }
 
-  if (!isNumeric(values.yCurrent) || values.yCurrent < values.yMin || values.yCurrent > values.yMax) {
+  if (!isNumeric([values.yCurrent]) || values.yCurrent < values.yMin || values.yCurrent > values.yMax) {
     return `Введите значение Y от ${values.yMin} до ${values.yMax}!`;
   }
 
@@ -47,11 +52,11 @@ const ValuesForm = (props) => {
 
     switch (action) {
       case CHECK:
-        /*let message = validateForm(props);
+        let message = validateForm(props);
         if (message === '') {
           props.checkEntry();
-        }*/
-        props.checkEntry();
+        }
+        //props.checkEntry();
         break;
       case CLEAR:
         props.clearEntries();
