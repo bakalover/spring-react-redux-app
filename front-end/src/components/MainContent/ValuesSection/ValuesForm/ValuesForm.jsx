@@ -6,6 +6,7 @@ import InfoMessage from './InfoMessage/InfoMessage';
 import FormButtonGroup from './FormButtonGroup/FormButtonGroup';
 import TextField from './TextField/TextField';
 import FormButtonGroupX from './FormButtonGroup/FormButtonGroupX';
+import {hitCheck} from "../../GraphSection/HitCheck";
 
 const CHECK = 'check';
 const CLEAR = 'clear';
@@ -54,9 +55,13 @@ const ValuesForm = (props) => {
       case CHECK:
         let message = validateForm(props);
         if (message === '') {
+          for (let i = 0; i < props.xCurrent.length; i++) {
+            for (let j = 0; j < props.rCurrent.length; j++) {
+              props.addEntry({x:props.xCurrent[i], y:props.yCurrent, r:props.rCurrent[j], status:hitCheck(props.xCurrent[i],props.yCurrent,props.rCurrent[j])});
+            }
+          }
           props.checkEntry();
         }
-        //props.checkEntry();
         break;
       case CLEAR:
         props.clearEntries();

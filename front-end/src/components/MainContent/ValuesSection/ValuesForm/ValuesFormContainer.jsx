@@ -7,6 +7,9 @@ import {
   checkEntry,
   clearEntries
 } from 'redux/modules/values';
+import {
+  addEntry
+} from "redux/modules/table";
 
 function mapStateToProps(state) {
   return {
@@ -16,7 +19,8 @@ function mapStateToProps(state) {
     xCurrent: state.values.xCurrent,
     yMin: state.values.yMin,
     yMax: state.values.yMax,
-    yCurrent: state.values.yCurrent
+    yCurrent: state.values.yCurrent,
+    entries: state.table.entries
   };
 }
 
@@ -26,7 +30,8 @@ function mapDispatchToProps(dispatch) {
     selectX: (value) => dispatch(selectX(value)),
     changeY: (value) => dispatch(changeY(value)),
     checkEntry: () => dispatch(checkEntry()),
-    clearEntries: () => dispatch(clearEntries())
+    clearEntries: () => dispatch(clearEntries()),
+    addEntry: (value)=>dispatch(addEntry(value))
   };
 }
 

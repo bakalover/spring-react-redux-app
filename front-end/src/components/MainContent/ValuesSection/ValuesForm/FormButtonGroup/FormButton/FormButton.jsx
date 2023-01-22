@@ -30,7 +30,7 @@ const FormButton = (props) => {
 }
 
 const changeValR = ()=>{
-    if(!checked){ // Реверсия checked (при нажатии используется предыдущее состояние)
+    if(!checked){
       props.selectValue([...props.valueCurrent, props.value]);
     }
     else{
