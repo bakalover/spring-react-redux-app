@@ -33,7 +33,7 @@ const FormButtonX = (props) => {
           break;
         }
       }
-      let newCurrent = props.valueCurrent;
+      let newCurrent = [...props.valueCurrent];         // Чёртова магия js -> взятие в скобки props.valueCurrent: изменении тригерит Хук useEffect в Graph - в обе стороны (без взятия - в одну: check=true)
       newCurrent.splice(k,1);              // Нельзя менять состояние props.valueCurrent не через reduce-ер (то есть напрямую), поэтому создаём копию состояния для безопаной работы
       props.selectValue(newCurrent);
     }

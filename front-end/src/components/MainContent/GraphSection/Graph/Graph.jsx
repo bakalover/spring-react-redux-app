@@ -26,13 +26,17 @@ const Graph = (props) => {
 
   const loadPrevPoints = (canvas, canvasCtx) => {
     for (let entry of props.entries) {
-      canvasCtx.fillStyle = entry.status ? 'green' : 'red';
-      canvasCtx.beginPath();
-      canvasCtx.arc(
-        150 + entry.x / 4 * 100,
-        150 - entry.y / 4 * 100,
-        2, 0, 2 * Math.PI);
-      canvasCtx.fill();
+      for (let i = 0; i < props.rCurrent.length; i++) {
+        if (entry.r === props.rCurrent[i]) {
+          canvasCtx.fillStyle = entry.status ? 'green' : 'red';
+          canvasCtx.beginPath();
+          canvasCtx.arc(
+            150 + entry.x / 4 * 100,
+            150 - entry.y / 4 * 100,
+            2, 0, 2 * Math.PI);
+          canvasCtx.fill();
+        }
+      }
     }
   }
 

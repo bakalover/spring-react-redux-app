@@ -41,7 +41,7 @@ const changeValR = ()=>{
           break;
         }
       }
-      let newCurrent = props.valueCurrent;
+      let newCurrent = [...props.valueCurrent];
       newCurrent.splice(k,1);              // Нельзя менять состояние props.valueCurrent не через reduce-ер (то есть напрямую), поэтому создаём копию состояния для безопаной работы
       props.selectValue(newCurrent);
     }

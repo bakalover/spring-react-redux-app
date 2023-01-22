@@ -36,7 +36,7 @@ const entryAPI = {
     // });
   },
 
-  // async clearEntries(token) {
+  // clearEntries() {
   //   return axiosInstance.delete('', {
   //     headers: {
   //       Authorization: 'Bearer' + token

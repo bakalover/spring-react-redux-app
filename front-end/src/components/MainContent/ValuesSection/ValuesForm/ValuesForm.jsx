@@ -137,8 +137,8 @@ const ValuesForm = (props) => {
 
       <div styleName="values-form__control-container">
         <ControlButton text="Проверить" action={handleCheckCLick} />
-        <ControlButton text="Очистить" action={handleClearCLick} />
-      </div>
+        {/*<ControlButton text="Очистить" action={handleClearCLick} />*/}
+      </div>2
     </form>
   );
 }
