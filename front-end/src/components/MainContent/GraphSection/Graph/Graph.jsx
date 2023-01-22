@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect} from 'react';
 //import { useState } from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './Graph.module.css';
@@ -11,6 +11,7 @@ import entryAPI from "../../../../api/entryAPI";
 
 //разобраться с тем, как выбирается X при клике!!!
 const Graph = (props) => {
+
   let masR = [];
 
 
@@ -221,6 +222,7 @@ const Graph = (props) => {
     entryAPI.checkEntry(owner_token.username,[canvasX],canvasY,props.rCurrent,owner_token.token);
     let checkHit = false;
     for (let i = 0; i < props.rCurrent.length; i++) {
+      props.addEntry({x:canvasX, y:canvasY, r:props.rCurrent[i], status:hitCheck(canvasX,canvasY,props.rCurrent[i])});
       checkHit = checkHit || hitCheck(canvasX, canvasY, props.rCurrent[i]);
     }
     currentCanvasCtx.fillStyle = checkHit ? 'green' : 'red';
@@ -268,7 +270,6 @@ const Graph = (props) => {
 
 
   }
-
   useEffect(() => {
     const pointsCanvas = pointsCanvasRef.current;
     const pointsCanvasCtx = pointsCanvas.getContext('2d');

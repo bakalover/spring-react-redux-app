@@ -4,6 +4,9 @@ import {
   selectX,
   changeY
 } from 'redux/modules/values';
+import{
+  addEntry
+} from "../../../../redux/modules/table";
 
 function mapStateToProps(state) {
   return {
@@ -20,7 +23,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     selectX: (value) => dispatch(selectX(value)),
-    changeY: (value) => dispatch(changeY(value))
+    changeY: (value) => dispatch(changeY(value)),
+    addEntry: (value) => dispatch(addEntry(value))
   };
 }
 
