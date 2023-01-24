@@ -18,7 +18,9 @@ const validate = values => {
     errors.errorMessage = 'Не валидное имя';
   // }else if (!/^[a-zA-Z0-9]+$/i.test(values.username)) {
   //   errors.errorMessage = 'Не валидный пароль';
-   }
+   } else if(values.username.length<3||values.username.length>30){
+    errors.errorMessage = 'Имя пользователя должно быть в диапазоне от 3 до 30 символов'
+  }
 
 
   return errors;
@@ -56,7 +58,7 @@ const AuthForm = (props) => {
             Имя пользователя
           </label>
           <input id="username" type="text" name="username"
-            value={formik.values.username} onChange={formik.handleChange} 
+            value={formik.values.username} onChange={formik.handleChange}
             //pattern={[
               //'^[a-zA-Z0-9]+$', // min 8 chars
               // '(?=.*\\d)', // number required
