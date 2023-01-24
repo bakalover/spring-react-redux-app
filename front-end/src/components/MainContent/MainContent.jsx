@@ -5,9 +5,11 @@ import sharedStyles from './main.module.css';
 import GraphSection from './GraphSection/GraphSection';
 import ValuesSection from './ValuesSection/ValuesSection';
 import TableSectionContainer from './TableSection/TableSectionContainer';
+import stompClient from "../../updates/stomp";
 
 
 const MainContent = (props) => {
+
   return (
     <main styleName="main-container">
       <h1 className="visually-hidden">Лабораторная работа #4 - Основная страница</h1>

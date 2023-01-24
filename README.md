@@ -68,5 +68,4 @@ Backend:<br><br>
 Динамическое обновление:
 <ul>
   <li>Использование STOMP protocol на основе WebSocket protocol</li>
-  добавляется...
 </ul>

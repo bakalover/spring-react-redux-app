@@ -4,6 +4,7 @@ import TitleHelmet from './common/TitleHelmet'
 import MainContent from './MainContent/MainContent';
 import IndexContent from './IndexContent/IndexContent'
 import Preloader from './Preloader/Preloader';
+import stompClient from "../updates/stomp";
 
 const App = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,6 +26,20 @@ const App = (props) => {
 
     );
   } else if (props.loggedUser) {
+
+    let callbackEntity = function(message) {
+      if (message.body) {
+        props.addEntry(JSON.parse(message.body));
+      }
+       else {
+        console.log("empty websock message");
+      }
+    };
+    let stompClient = require('../updates/stomp');
+    stompClient.register([
+      {route: '/topic/newEntity', callbackfunc: callbackEntity},
+    ]);
+
     return (
       <div>
         <HeaderContainer />

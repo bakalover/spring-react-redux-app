@@ -224,15 +224,6 @@ const Graph = (props) => {
     // checkEntry - настроена на массивы по x и r, в данном случае canvasX - массив из одного элемента
     let owner_token = JSON.parse(localStorage.getItem('userWl4'));
     entryAPI.checkEntry(owner_token.username,[canvasX],canvasY,props.rCurrent,owner_token.token);
-    let checkHit = false;
-    for (let i = 0; i < props.rCurrent.length; i++) {
-      props.addEntry({x:canvasX, y:canvasY, r:props.rCurrent[i], status:hitCheck(canvasX,canvasY,props.rCurrent[i])});
-      checkHit = checkHit || hitCheck(canvasX, canvasY, props.rCurrent[i]);
-    }
-    currentCanvasCtx.fillStyle = checkHit ? 'green' : 'red';
-    currentCanvasCtx.beginPath();
-    currentCanvasCtx.arc(event.nativeEvent.offsetX, event.nativeEvent.offsetY, 2, 0, 2 * Math.PI);
-    currentCanvasCtx.fill();
     //let canvasX = ((props.rCurrent * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent);
 
     // alert(props.rCurrent);

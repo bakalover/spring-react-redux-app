@@ -6,6 +6,9 @@ import com.example.lab4.Entities.User;
 import com.example.lab4.repository.ShotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +18,12 @@ import java.security.Principal;
 @RestController //Добаляет @ResponseBody -> ответ высылается в виде json внутри http response
 @RequestMapping("/api/shots")
 public class ShotController {
+    private SimpMessagingTemplate template;
+
+    @Autowired
+    public void setTemplate(SimpMessagingTemplate template) {
+        this.template = template;
+    }
     private ShotService shotService;
     @Autowired
     public void setShotService(ShotService shotService){
@@ -35,8 +44,11 @@ public class ShotController {
         return ResponseEntity.ok(shotService.getAll());
     }
 
+    @MessageMapping("/entities")
+    @SendTo("/topic/newEntity")
     @PostMapping("/add")// .../api/shots -> Добавление точки пользователя, возвращает добавленный объект
     ResponseEntity<?> addUserShots(@Valid @RequestBody Shot shot) { //Testing ((@Valid @RequestBody Shot shot, Principal principal))
+        template.convertAndSend("/topic/newEntity", shot);
         return ResponseEntity.ok(shotService.addShot(shot));
     }
 

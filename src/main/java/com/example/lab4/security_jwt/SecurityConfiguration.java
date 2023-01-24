@@ -69,6 +69,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter { // К�
                 .addFilterBefore(filter(), UsernamePasswordAuthenticationFilter.class) //Фильтр токенов на основе переданного класса
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll() //Доступ к котроллеру с регистрацией имеют все
+                .antMatchers("/entities/**").permitAll()
                 .anyRequest().authenticated(); // иначе нужна аутентификация
     }
 }
