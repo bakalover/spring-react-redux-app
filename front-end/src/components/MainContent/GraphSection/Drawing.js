@@ -1,57 +1,12 @@
 export default class Drawing{
 
     static svgDrawing(r, m, fDr){
-        //alert(r);
-        //alert(ch);
-
-        // if (r<0){
-        //     r = 0;
-        // }
-
-
-        // let val_250 = 150 + (100 * r);
-        // let val_200 = 150 + (50 * r);
-        // let val_100 = 150 - (50 * r);
-        // let val_50 = 150 - (100 * r);
 
         let val_125 = 150 - 100 * (Math.abs(r)/4);
         let val_162p5 = 150 + 50 * (Math.abs(r)/4);
         let val_137p5 = 150 - 50 * (Math.abs(r)/4);
         let val_175 = 150 + 100 * (Math.abs(r)/4);
         let circle_val = Math.abs(r) * 25;
-
-
-
-        // let val_201 = 100 - (50 * r);
-        // let val_101 = 100 + (50 * r);
-        // let val_51 = 100 + (100 * r);
-
-
-        //let circe_val = 100 - (33 * 2 * (1-r));
-
-
-        // if (chb.checked){
-        //     alert("yeees");
-        // }
-        // if (chb.checked == false){
-        //     alert("nooo");
-        // }
-
-
-
-
-
-        // let chb = document.getElementById(m);
-        // let dn = chb.getAttribute("id");
-
-        //alert(dn);
-
-        // if(chb.checked==false){
-        //     alert("123123123");
-        //     alert(chb.getAttribute("id"));
-        // }
-
-
 
 
         let rect1 = document.getElementById('rectangle1');
@@ -89,15 +44,6 @@ export default class Drawing{
         let circleM4 = document.getElementById('circleM4');
 
 
-        // let lineXMinusR = document.getElementById('lineXminusR');
-        // let lineXMinirRdivTwo = document.getElementById('lineXminusRTwo');
-        // let minRLetterOnX = document.getElementById('minRLetterOnX');
-        // let minRDivTwoLetterOnX = document.getElementById('minRDivTwoLetterOnX');
-
-        // let line3 = document.getElementById('line3');
-        // let line4 = document.getElementById('line4');
-        //alert("M " + val_175 + " 150 A " + circle_val + " " + circle_val + " 0 0 1 150 " + val_175 + " L 150 150 Z");
-
         if (r===1){
             rect1.setAttribute("points" , val_125 + "," + val_162p5 + " " + val_125 + ",150 150,150 150," + val_162p5);
             triangle1.setAttribute("points" , val_125 + ",150 150,150 150," + val_125);
@@ -122,10 +68,6 @@ export default class Drawing{
             circle4.setAttribute("d" , "M " + val_175 + " 150 A " + circle_val + " " + circle_val + " 0 0 1 150 " + val_175 + " L 150 150 Z");
         }
 
-
-
-
-        //alert(val_175 + "," + val_137p5 + " " + val_175 + ",150 150,150 150," + val_137p5);
 
         if (r===-1){
             rectM1.setAttribute("points" , val_175 + "," + val_137p5 + " " + val_175 + ",150 150,150 150," + val_137p5);
@@ -153,15 +95,7 @@ export default class Drawing{
 
 
 
-        // if (m !==0){
-        //     //alert(m + "yee")
-        //     checkB = document.getElementById(m);
-        // }
-
-
         if(m===0){
-            //alert(m);
-            //alert(fDr);
             if(fDr === 4){
                 rect4.setAttribute("points" , "0,0 0,0 0,0 0,0");
                 triangle4.setAttribute("points" , "0,0 0,0 0,0");
@@ -210,23 +144,6 @@ export default class Drawing{
                 circleM1.removeAttribute("d");
             }
         }
-
-
-
-        // else if (r!=2 && ch){
-        //     rect1.removeAttribute("points");
-        // }
-
-
-        // rect.setAttribute("points" , "150,150 150," + val_51 + " " + val_101 +"," + val_51 + " " + val_101 + ",150");
-        // triangle.setAttribute("points" , "150,150 " + val_201 +",150 150," + val_101);
-        //circle.setAttribute("d" , "M" + val_51 +  ",150 A" + circe_val + "," + circe_val + " 90 0,0 150," + val_251 + " L 150,150 Z");
-        // lineXMinusR.setAttribute("x1" , 150 - (100 * r));
-        // lineXMinusR.setAttribute("x2" , 150 - (100 * r));
-        // lineXMinirRdivTwo.setAttribute("x1" , 150 - (50 * r));
-        // lineXMinirRdivTwo.setAttribute("x2" , 150 - (50 * r));
-        // minRLetterOnX.setAttribute("x" , 150 - (110 * r));
-
 
     }
 

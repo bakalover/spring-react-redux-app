@@ -36,18 +36,6 @@ const GraphSvg = (props) => {
 
       <line x1="105" y1="43" x2="115" y2="43" stroke="black" />
       <text x="120" y="48" fontSize="14">{props.rValue}</text>
-
-      {/* Triangle */}
-      {/* <polygon points="43,110 110,110 110,176"
-        fill="blue" fillOpacity="0.25" stroke="darkblue" strokeOpacity="0.5" /> */}
-
-      {/* Rectangle */}
-      {/* <polygon points="43,43 43,110 110,110 110,43"
-        fill="green" fillOpacity="0.25" stroke="darkgreen" strokeOpacity="0.5" /> */}
-
-      {/* Circle */}
-      {/* <path d="M 143 110 A 33 33 0 0 0 110 76 L 110 110 Z"
-        fill="yellow" fillOpacity="0.25" stroke="#CCCC00" strokeOpacity="0.5" /> */}
     </svg>
   );
 }

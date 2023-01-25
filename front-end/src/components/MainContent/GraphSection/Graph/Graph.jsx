@@ -211,113 +211,25 @@ const Graph = (props) => {
   //}
 
   const handleClick = (canvasRef, event) => {
-    const currentCanvas = currentCanvasRef.current;
-    const currentCanvasCtx = currentCanvas.getContext('2d');
-    //const canvas = canvasRef.current;
-
-    //let canvasX = (event.nativeEvent.offsetX - canvas.width / 2) / canone * props.rCurrent;
-
-    //Пересчёт координат, очевидно, при разных радиусах приведёт к одинаковому результату,
-    //поэтому можно посчитать только при одном радиусе ,например при props.rCurrent[0]
     let canvasX = ((props.rCurrent[0] * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent[0]);
     let canvasY = ((props.rCurrent[0] * (150 - event.nativeEvent.offsetY))/100) * (4/props.rCurrent[0]);
-    // checkEntry - настроена на массивы по x и r, в данном случае canvasX - массив из одного элемента
     let owner_token = JSON.parse(localStorage.getItem('userWl4'));
     entryAPI.checkEntry(owner_token.username,[canvasX],canvasY,props.rCurrent,owner_token.token);
-    //let canvasX = ((props.rCurrent * (event.nativeEvent.offsetX - 150))/100) * (4/props.rCurrent);
-
-    // alert(props.rCurrent);
-    // alert(event.nativeEvent.offsetX);
-
-   /* let minDiff = Infinity;
-
-
-
-
-    //let nearestX;
-
-    for (let i = 0; i < props.xValues.length; i++) {
-      if (Math.abs(canvasX - props.xValues[i]) < minDiff) {
-        minDiff = Math.abs(canvasX - props.xValues[i]);
-        //nearestX = props.xValues[i];
-      }
-    }*/
-
-    //let canvasY = (-event.nativeEvent.offsetY + canvas.height / 2) / canone * props.rCurrent;
-    //let canvasY = ((props.rCurrent * (150 - event.nativeEvent.offsetY))/100) * (4/props.rCurrent);
-
-    /*if (canvasY < props.yMin) {
-      canvasY = props.yMin;
-    } else if (canvasY > props.yMax) {
-      canvasY = props.yMax;
-    }*/
-
-
-    //alert(props.rCurrent);
-
-
-    //props.selectX(canvasX);
-    //props.changeY(canvasY.toString().substring(0, 7));
-
-    //document.querySelector("#root > div > main > div > section.content-section.main_column-container__item__Jnh6e.ValuesSection_section__8jEMh > form > div.ValuesForm_values-form__control-container__K8BRu > button:nth-child(1)")
-
-    //document.getElementById("Проверить").click();
-
-
   }
   useEffect(() => {
     const pointsCanvas = pointsCanvasRef.current;
     const pointsCanvasCtx = pointsCanvas.getContext('2d');
-    //drawCurrent(pointsCanvas, pointsCanvasCtx);
     clearCanvas(pointsCanvas, pointsCanvasCtx);
 
     const currentCanvas = currentCanvasRef.current;
     const currentCanvasCtx = currentCanvas.getContext('2d');
-    //clearCanvas(currentCanvas, currentCanvasCtx);
 
     loadPrevPoints(pointsCanvas, pointsCanvasCtx);
-    //drawCurrent(currentCanvas, currentCanvasCtx); Why?? -> disabled (рисовало точки без их отправки)
     clearCurrent(currentCanvas, currentCanvasCtx);
-    //alert(arr);32
   });
 
   let image = <GraphSvg1 rValue={props.rCurrent} />;
 
-
-  //masR.push(props.xCurrent, props.yCurrent, props.rCurrent);
-
-  // const [checked, setChecked] = useState(false);
-
-  // let message;
-	// if ((checked) && (props.value === 2)){
-  //   message = <GraphSvg2 rValue={props.rCurrent} />
-	// }
-  // if ((checked)){
-  //   message = <GraphSvg1 rValue={props.rCurrent} />
-	// }
-  // else {
-	// 	message = null
-	// }
-
-  // for(let i = 0; i<8;i++){
-  //   masR[props.rCurrent] = props.rCurrent;
-  // }
-  // console.log(props.xCurrent);
-  // console.log(props.rCurrent);
-  // console.log(props.yCurrent);
-  // console.log("");
-
-  //console.log(masR);
-  // if(props.xCurrent!==undefined){
-  //   if(props.xCurrent.length>2){
-  //     props.xCurrent = undefined;
-  //   }
-
-
-
-  // alert(props.xCurrent);
-
-  //alert(arr);
 
   return (
         <div styleName="graph-container" id='wrapper'>
