@@ -4,6 +4,7 @@ import sharedStyles from '../main.module.css';
 import Table from './Table/Table';
 
 const TableSection = (props) => {
+  //alert(props.entries);
   return (
     <section styleName="main-container__item main-container__item_table section" className="content-section">
       <h2 className="theme section-header">

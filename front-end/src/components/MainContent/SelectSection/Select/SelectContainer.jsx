@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import Graph from './Graph'
 import {
   selectX,
   changeY
@@ -7,6 +6,7 @@ import {
 import{
   addEntry
 } from "../../../../redux/modules/table";
+import SelectElement from './SelectElement';
 
 function mapStateToProps(state) {
   return {
@@ -32,4 +32,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Graph);
+)(SelectElement);

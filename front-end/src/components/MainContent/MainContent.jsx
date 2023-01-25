@@ -5,6 +5,7 @@ import sharedStyles from './main.module.css';
 import GraphSection from './GraphSection/GraphSection';
 import ValuesSection from './ValuesSection/ValuesSection';
 import TableSectionContainer from './TableSection/TableSectionContainer';
+import SelectSection from './SelectSection/SelectSection';
 
 
 const MainContent = (props) => {
@@ -13,6 +14,7 @@ const MainContent = (props) => {
       <h1 className="visually-hidden">Лабораторная работа #4 - Основная страница</h1>
       <div styleName="main-container__item main-container__item_left-column column-container">
         <GraphSection />
+        <SelectSection/>
         <ValuesSection />
       </div>
       <TableSectionContainer />

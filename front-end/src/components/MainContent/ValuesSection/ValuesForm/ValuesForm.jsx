@@ -6,13 +6,19 @@ import InfoMessage from './InfoMessage/InfoMessage';
 import FormButtonGroup from './FormButtonGroup/FormButtonGroup';
 import TextField from './TextField/TextField';
 import FormButtonGroupX from './FormButtonGroup/FormButtonGroupX';
+import {hitCheck} from "../../GraphSection/HitCheck";
 
 const CHECK = 'check';
 const CLEAR = 'clear';
 
 const validateForm = values => { // Поправить валидацию с учётом того, что rCurrent и xCurrent - числа
   let isNumeric = num => {
-    return !isNaN(parseFloat(num)) && isFinite(num);
+    for (let i = 0; i<num.length; i++){
+      if(!(!isNaN(parseFloat(num[i])) && isFinite(num[i]))){
+        return false;
+      }
+    }
+    return true;
   }
 
   if (!isNumeric(values.rCurrent) || !values.rValues.includes(parseFloat(values.rCurrent))) {
@@ -23,7 +29,7 @@ const validateForm = values => { // Поправить валидацию с у�
     return 'Выберите значение X!';
   }
 
-  if (!isNumeric(values.yCurrent) || values.yCurrent < values.yMin || values.yCurrent > values.yMax) {
+  if (!isNumeric([values.yCurrent]) || values.yCurrent < values.yMin || values.yCurrent > values.yMax) {
     return `Введите значение Y от ${values.yMin} до ${values.yMax}!`;
   }
 
@@ -33,6 +39,9 @@ const validateForm = values => { // Поправить валидацию с у�
 const ValuesForm = (props) => {
   const [infoMessage, setInfoMessage] = useState('Введите координаты точки');
   const [action, setAction] = useState(undefined);
+
+  //alert(props.xValues);
+  //alert(props.users);
 
   const handleCheckCLick = () => {
     setAction(CHECK);
@@ -47,11 +56,15 @@ const ValuesForm = (props) => {
 
     switch (action) {
       case CHECK:
-        /*let message = validateForm(props);
+        let message = validateForm(props);
         if (message === '') {
+          for (let i = 0; i < props.xCurrent.length; i++) {
+            for (let j = 0; j < props.rCurrent.length; j++) {
+              props.addEntry({x:props.xCurrent[i], y:props.yCurrent, r:props.rCurrent[j], status:hitCheck(props.xCurrent[i],props.yCurrent,props.rCurrent[j])});
+            }
+          }
           props.checkEntry();
-        }*/
-        props.checkEntry();
+        }
         break;
       case CLEAR:
         props.clearEntries();
@@ -127,8 +140,8 @@ const ValuesForm = (props) => {
 
       <div styleName="values-form__control-container">
         <ControlButton text="Проверить" action={handleCheckCLick} />
-        <ControlButton text="Очистить" action={handleClearCLick} />
-      </div>
+        {/*<ControlButton text="Очистить" action={handleClearCLick} />*/}
+      </div>2
     </form>
   );
 }

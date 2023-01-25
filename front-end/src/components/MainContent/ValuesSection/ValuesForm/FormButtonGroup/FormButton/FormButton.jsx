@@ -30,7 +30,7 @@ const FormButton = (props) => {
 }
 
 const changeValR = ()=>{
-    if(!checked){ // Реверсия checked (при нажатии используется предыдущее состояние)
+    if(!checked){
       props.selectValue([...props.valueCurrent, props.value]);
     }
     else{
@@ -41,11 +41,10 @@ const changeValR = ()=>{
           break;
         }
       }
-      let newCurrent = props.valueCurrent;
+      let newCurrent = [...props.valueCurrent];
       newCurrent.splice(k,1);              // Нельзя менять состояние props.valueCurrent не через reduce-ер (то есть напрямую), поэтому создаём копию состояния для безопаной работы
       props.selectValue(newCurrent);
     }
-
 }
 
   const [checked, setChecked] = useState(false);
